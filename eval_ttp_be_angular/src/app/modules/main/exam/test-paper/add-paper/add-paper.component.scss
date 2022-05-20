@@ -1,0 +1,72 @@
+.dot {
+  color: red;
+}
+.textTime {
+  display: flex;
+  align-items: center;
+  mat-form-field {
+    width: 33.33333%;
+  }
+}
+
+.testTitle,
+.counterTime {
+  display: flex;
+  align-items: center;
+}
+.testPic {
+  display: flex;
+  align-items: center;
+}
+
+.radioConfirmError {
+  text-align: center;
+}
+
+.btnGroup {
+  display: flex;
+  justify-content: center;
+
+  button {
+    background-color: #455a64;
+    padding: 0 2%;
+    margin: 0 4%;
+    color: #fff;
+  }
+}
+
+.addTest {
+  background-color: #455a64;
+  color: #fff;
+  .addTxt {
+    font-size: 14px;
+  }
+}
+
+.deleteTest {
+  background-color: #455a64;
+  .material-icons {
+    color: #fff;
+  }
+}
+.answerGroup {
+  display: flex;
+  align-items: center;
+  label {
+    margin-bottom: 0;
+  }
+  a {
+    margin-left: 1%;
+  }
+  .material-icons {
+    color: #ff0000;
+  }
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  mat-form-field {
+    width: 50%;
+  }
+}

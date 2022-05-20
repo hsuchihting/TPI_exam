@@ -1,0 +1,55 @@
+<!-- <p>view-test works!</p> -->
+<div class="row">
+  <div class="col-9" style="left: 3rem;">
+    <form [formGroup]="vm.viewTestForm">
+      <div class="row" style="margin-top: 30px;">
+        <label class="col-3" style="margin-top: 20px;">測驗說明名稱</label>
+        <mat-form-field class="col-9">
+          <mat-label></mat-label>
+          <input
+            formControlName="tdName"
+            name="roleFilter"
+            type="text"
+            matInput
+          />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-tab-group>
+            <mat-tab label="內容（中）">
+              <ng-template matTabContent>
+                <app-editor
+                  formControlName="contentCh"
+                  [maxWordLimit]="20000"
+                ></app-editor>
+              </ng-template>
+            </mat-tab>
+            <mat-tab label="內容（英）">
+              <ng-template matTabContent>
+                <app-editor
+                  formControlName="contentEn"
+                  [maxWordLimit]="20000"
+                ></app-editor>
+              </ng-template>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-3"></div>
+  </div>
+  <div class="row">
+  <div class="col-12 text-center">
+    <button
+    color="primary"
+    mat-flat-button
+    type="button"
+    style="margin: 20px;"
+    (click)="backTestHome()"
+    >
+    關閉
+    </button>
+  </div>
+</div>

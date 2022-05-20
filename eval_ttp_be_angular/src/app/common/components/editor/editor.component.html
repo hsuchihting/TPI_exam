@@ -1,0 +1,21 @@
+<editor
+  [(ngModel)]="_content"
+  (ngModelChange)="onChange($event)"
+  [disabled]="disabled"
+  [init]="init"
+  accept="image/png, image/jpeg"
+  type="file"
+></editor>
+<div class="tip">
+  限{{ maxWordLimit }}字，目前已輸入
+  <span
+    [class]="
+      contentWordCount > maxWordLimit
+        ? 'formInput_count error'
+        : 'formInput_count'
+    "
+    >{{ contentWordCount }}</span
+  >
+  字
+</div>
+

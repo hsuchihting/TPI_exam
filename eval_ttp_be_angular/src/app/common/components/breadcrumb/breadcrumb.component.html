@@ -1,0 +1,3 @@
+<div class="breadcrumbs">
+    <span [class]="breadcrumb.active ? 'breadcrumbs_Item active': 'breadcrumbs_Item'" *ngFor="let breadcrumb of (breadcrumbs$ | async)">{{ breadcrumb.label }}</span>
+</div>

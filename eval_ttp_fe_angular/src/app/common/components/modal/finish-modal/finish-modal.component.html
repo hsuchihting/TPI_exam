@@ -1,0 +1,20 @@
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header popup-header-b"></div>
+    <div class="modal-body text-center">
+      <p *ngIf="isFail === 'uuid'">請輸入受測者代碼</p>
+      <p *ngIf="isFail === 'email'">請輸入受測者Email</p>
+      <p *ngIf="isFail === 'uuidInCorrect'">受測代碼不正確</p>
+      <p *ngIf="isFail === 'finishTest'">您已完成測驗，請勿重複登入</p>
+      <p *ngIf="isFail === 'expire'">您已超過測驗有效期限，請聯繫人資窗口</p>
+    </div>
+    <div class="modal-footer text-center justify-content-center frame-btn-box">
+      <button class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+        <!-- <a href="#" class="" > -->
+        <span class="bg"></span>
+        <div class="txt">關閉</div>
+        <!-- </a> -->
+      </button>
+    </div>
+  </div>
+</div>

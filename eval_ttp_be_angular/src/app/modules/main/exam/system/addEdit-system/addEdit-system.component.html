@@ -1,0 +1,79 @@
+<mat-card>
+  <form [formGroup]="vm.systemForm">
+  <div class="row">
+    <div class="col-6">
+      <label class="col-3"><span style="color: white;">*</span>版本</label>
+      <mat-form-field class="col-9">
+        <mat-label></mat-label>
+        <input
+          formControlName="sdId"
+          name="roleFilter"
+          type="text"
+          matInput
+        />
+      </mat-form-field>
+      <label class="col-3"><span style="color: white">*</span>動態參數</label>
+      <a href="" class="link" (click)="insertContent($event, '${USER_NAME}')" style="margin-left: 15px">受測者姓名</a>
+      <br>
+      <div class="col-9">
+      </div>
+    </div>
+    <div class="col-6"></div>
+    <div class="row">
+      <label class="rol-3" style="margin-left: 3rem; margin-top: 3rem;"><span style="color: red;">*</span>內容</label>
+      <div class="col-9" style="margin-left: 80px;">
+        <mat-tab-group>
+          <mat-tab label="內容（中）">
+            <ng-template matTabContent>
+              <app-editor
+                formControlName="systemContentCh"
+                #editor1
+                id="editor1"
+              ></app-editor>
+              <mat-error *ngIf="vm.systemContentCh?.invalid && vm.systemContentCh?.touched || vm.systemContentCh?.dirty">
+                <mat-error *ngIf="vm.systemContentCh!.errors?.required" >不可為空，請填入！</mat-error>
+                <mat-error *ngIf="vm.systemContentCh!.errors?.maxlength" >字數不可超過2000字！</mat-error>
+                <mat-error *ngIf="vm.systemContentCh!.errors?.matchLangNum" >中/英文/數字！</mat-error>
+                <mat-error *ngIf="vm.systemContentCh!.errors?.hasChinese" >中文必填！</mat-error>
+              </mat-error>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="內容（英）">
+            <ng-template matTabContent>
+              <app-editor
+                formControlName="systemContentEn"
+                #editor1
+                id="editor1"
+              ></app-editor>
+              <mat-error *ngIf="vm.systemContentEn?.invalid && vm.systemContentEn?.touched || vm.systemContentEn?.dirty">
+                <mat-error *ngIf="vm.systemContentEn!.errors?.matchEngNum" >如有選填英文內容，請填入英文/數字！</mat-error>
+              </mat-error>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+  </form>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button
+      color="primary"
+      mat-flat-button
+      type="button"
+      style="margin: 20px;"
+      (click)="onAddEdit()"
+      >
+        儲存
+      </button>
+      <button
+      color="primary"
+      mat-flat-button
+      type="button"
+      (click)="vm.backSystemHome()"
+      >
+        取消
+      </button>
+    </div>
+  </div>
+</mat-card>

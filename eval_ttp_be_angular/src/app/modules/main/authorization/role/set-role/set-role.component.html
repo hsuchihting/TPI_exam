@@ -1,0 +1,160 @@
+<mat-card>
+  <form [formGroup]="vm.invalidForm">
+    <div class="row col-6" class="custom-control">
+      <label class="col-2"><span class="highlight">*</span>角色名稱</label>
+      <mat-form-field class="col-4">
+        <mat-label></mat-label>
+        <input
+          name="roleName"
+          type="text"
+          matInput
+          formControlName="roleName"
+        />
+        <mat-error
+          *ngIf="
+            !vm.invalidForm.controls.roleName.pristine &&
+            vm.invalidForm.controls.roleName.hasError('required')
+          "
+          id="roleName-help"
+          class="p-error"
+          >角色名稱不可為空請輸入</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !vm.invalidForm.controls.roleName.pristine &&
+            vm.invalidForm.controls.roleName.hasError('maxlength')
+          "
+          id="roleName-help"
+          class="p-error"
+          >輸入字數不可超過30字</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </form>
+</mat-card>
+
+<mat-card>
+  <!-- 使用者下拉搜尋（EB010102: 取得組織表  getERPDep 無req） -->
+  <div class="row col-6">
+    <label class="col-2">使用者</label>
+    <mat-form-field class="col-10">
+      <mat-label></mat-label>
+      <mtx-select
+        [items]="vm.depArray"
+        bindLabel="depName"
+        bindValue="depId"
+
+        [required]="vm.required"
+        [disabled]="vm.disabled"
+        (ngModelChange)="vm.checkEvent($event)"
+        [(ngModel)]="vm.depId"
+        >
+      </mtx-select>
+
+    </mat-form-field>
+  </div>
+
+
+  <div class="flex-container">
+    <h2 class="col-sm-6">未授權人員</h2>
+    <h2 class="col-sm-6">已授權人員</h2>
+  </div>
+  <div
+    class="container; col-6; margin: 50px"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      margin: 10px;
+    "
+  >
+    <ul>
+      <input
+        class="search"
+        maxlength="30"
+        id="empEnName"
+        name="search"
+        type="text"
+        pInputText
+        placeholder="請輸入關鍵字"
+        [(ngModel)]="vm.filterdata1"
+      />
+
+      <li
+        class="listbox"
+        *ngFor="
+          let item of vm.memberArray | filter: vm.filterdata1;
+          let i = index
+        "
+        #toggle
+        (click)="vm.toggleSelection(item, vm.memberArray, i)"
+
+        [ngClass]="{ 'item-selected': item.value }"
+
+        >
+        {{ item.empEnName }}
+      </li>
+
+    </ul>
+    <div class="buttons-container ; col-sm-3">
+      <button class="btn btn-defaul" (click)="vm.doAdd()">
+        <mat-icon>arrow_forward_ios</mat-icon>
+      </button>
+    </div>
+    <ul>
+      <input
+        class="search"
+        maxlength="30"
+        id="empEnName"
+        name="search"
+        type="text"
+        pInputText
+        placeholder="請輸入關鍵字"
+        [(ngModel)]="vm.filterdata2"
+      />
+
+      <li
+        class="listbox"
+        *ngFor="
+          let item of vm.memberData | filter: vm.filterdata2;
+          let i = index
+        "
+      >
+        {{ item.empEnName }}
+
+        <a type="submit" class="close AClass" (click)="vm.remove(i, item)">
+          <span class="material-icons"> close </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <mat-error
+    class="invalid-feedback"
+    role="alert"
+    style="display: flex; justify-content: center"
+    *ngIf="vm.required"
+    >未選取角色成員</mat-error
+  >
+
+
+  <div style="display: flex; justify-content: center">
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="submit(vm.invalidForm)"
+    >
+      儲存
+    </button>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      routerLink="/main/authorization/role"
+    >
+      取消
+    </button>
+  </div>
+</mat-card>

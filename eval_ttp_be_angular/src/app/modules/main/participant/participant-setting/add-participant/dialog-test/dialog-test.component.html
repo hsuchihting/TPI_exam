@@ -1,0 +1,44 @@
+<h2 align="center" mat-dialog-title>檢視測驗說明範本</h2>
+<mat-dialog-content class="mat-typography">
+  <p class="color-name">
+    測驗說明名稱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ tdName }}
+  </p>
+
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="內容(中)">
+      <p>
+        <br />
+        {{contentCh}}
+      </p>
+
+      <div *ngFor="let item of tbContentList">
+        <p class="color-test">
+          {{
+            item.stNameCh
+          }}
+          .............................................................................................
+          {{ item.testTime }}分鐘
+        </p>
+      </div>
+    </mat-tab>
+    <mat-tab label="內容(英)">
+      <p>
+        <br />
+        {{ contentEn }}
+      </p>
+
+      <div *ngFor="let item of tbContentList">
+        <p class="color-test">
+          {{
+            item.stNameEn
+          }}
+          .............................................................................................
+          {{ item.testTime }}分鐘
+        </p>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button color="primary" mat-raised-button mat-dialog-close>關閉</button>
+</mat-dialog-actions>

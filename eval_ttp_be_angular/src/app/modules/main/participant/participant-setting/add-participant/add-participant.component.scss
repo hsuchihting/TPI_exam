@@ -1,0 +1,128 @@
+
+
+.field-area {
+  width: 0%;
+  margin-bottom: 0px;
+  margin-left: 190px;
+}
+
+.drop-area{
+
+}
+
+.drop-container {
+
+  // display: flex;
+  // justify-content: center;
+}
+  .__header{
+    background-color: rgb(70, 134, 255);
+    width: 240px;
+    margin: 0px 10px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+  }
+
+      .priority {
+      border-right: solid 2px white;
+      width: 64px;
+      display: inline-block;
+    }
+    .title {
+      width: 64px;
+      display: inline-block;
+    }
+
+.drop-list {
+  width: 180px;
+  margin: 0px 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  min-height: 60px;
+  background: white;
+  overflow: hidden;
+  border: 1px solid black;
+  padding: 10px 10px 30px 10px;
+
+}
+
+.drop-box {
+  padding: 1px 10px;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background: white;
+  font-size: 14px;
+  margin: 5px 0px;
+}
+
+.can-move{
+  cursor: move;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+
+.drop-list.cdk-drop-list-dragging .drop-box:not(.cdk-drag-placeholder) {
+  width: 350px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.priority {
+  position: relative;
+  border-right: solid 2px #ccc;
+  width: 60px;
+  margin-right: 20px;
+}
+
+.operation-panel--middle {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.dragging-item {
+  padding: 5px 10px;
+  margin: 5px 20px;
+  width: 385px;
+  background-color: rgb(174,214,241);
+}
+
+.p-error{
+  color:red;
+}
+
+.dot{
+  color:red;
+  font-weight: bold;
+}
+
+.btn-save{
+  margin-right: 20px;
+}
+
+.randomCode{
+  background-color:#cccccc;
+}

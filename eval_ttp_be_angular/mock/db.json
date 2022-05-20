@@ -1,0 +1,1539 @@
+{
+  "totalAuthFunc":[
+    { "functionType":
+    [
+    {
+      "funcId": "role_setting.view",
+      "funcName": "角色設定可視",
+      "Function": [
+        {
+          "funcId": "role_setting.add",
+          "funcName": "角色設定新增"
+        },
+        {
+          "funcId": "role_setting.edit",
+          "funcName":"角色設定編輯"
+        },
+        {
+          "funcId": "role_setting.delete",
+          "funcName": "角色設定刪除"
+        }
+      ]
+    },
+    {
+      "funcId": "email_setting.view",
+      "funcName": "Email範本設定可視",
+      "Function": [
+        {
+          "funcId": "email_setting.add",
+          "funcName": "Email範本設定新增"
+        },
+        {
+          "funcId": "email_setting.edit",
+          "funcName": "Email範本設定編輯"
+        },
+        {
+          "funcId": "email_setting.delete",
+          "funcName": "Email範本設定刪除"
+        }
+
+      ]
+    },
+    {
+      "funcId": "sysdesc_setting.view",
+      "funcName": "系統說明可視",
+      "Function": [
+        {
+          "funcId": "sysdesc_setting.add",
+          "funcName": "系統說明新增"
+        },
+        {
+          "funcId": "sysdesc_setting.edit",
+          "funcName": "系統說明編輯"
+        },
+        {
+          "funcId": "sysdesc_setting.delete",
+          "funcName": "系統說明刪除"
+        }
+
+      ]
+    },
+    {
+      "funcId": "privacy_setting.view",
+      "funcName": "隱私權政策可視",
+      "Function": [
+        {
+          "funcId": "privacy_setting.add",
+          "funcName": "隱私權政策新增"
+        },
+        {
+          "funcId": "privacy_setting.edit",
+          "funcName": "隱私權政策編輯"
+        },
+        {
+          "funcId": "privacy_setting.delete",
+          "funcName": "隱私權政策刪除"
+        }
+
+      ]
+    },
+    {
+      "funcId": "tests_setting.view",
+      "funcName": "試卷設定可視",
+      "Function": [
+        {
+          "funcId": "tests_setting.add",
+          "funcName": "試卷設定新增"
+        },
+        {
+          "funcId": "tests_setting.edit",
+          "funcName": "試卷設定編輯"
+        },
+        {
+          "funcId": "tests_setting.delete",
+          "funcName": "試卷設定刪除"
+        }
+
+      ]
+    },
+    {
+      "funcId": "testsgroup_setting.view",
+      "funcName": "題本設定可視",
+      "Function": [
+        {
+          "funcId": "testsgroup_setting.add",
+          "funcName": "題本設定新增"
+        },
+        {
+          "funcId": "testsgroup_setting.edit",
+          "funcName": "題本設定編輯"
+        },
+        {
+          "funcId": "testsgroup_setting.delete",
+          "funcName": "題本設定刪除"
+        }
+
+      ]
+    },
+    {
+      "funcId": "tester_setting.view",
+      "funcName": "受測者設定可視",
+      "Function": [
+        {
+          "funcId": "tester_setting.add",
+          "funcName": "受測者設定新增"
+        },
+        {
+          "funcId": "tester_setting.edit",
+          "funcName": "受測者設定編輯"
+        },
+        {
+          "funcId": "tester_setting.delete",
+          "funcName": "受測者設定刪除"
+        }
+
+      ]
+    },
+    {
+      "funcId": "testerresult_setting.view",
+      "funcName": "測驗結果查詢可視",
+      "Function": []
+    },
+    {
+      "funcId": "subject_setting.view",
+      "funcName": "題目類別設定可視",
+      "Function": [
+        {
+          "funcId": "subject_setting.add",
+          "funcName": "題目類別設定新增"
+        },
+        {
+          "funcId": "subject_setting.edit",
+          "funcName": "題目類別設定編輯"
+        },
+        {
+          "funcId": "subject_setting.delete",
+          "funcName": "題目類別設定刪除"
+        }
+
+      ]
+    },
+    {
+      "funcId": "title_setting.view",
+      "funcName": "職務別設定可視",
+      "Function": [
+        {
+          "funcId": "title_setting.add",
+          "funcName": "職務別設定新增"
+        },
+        {
+          "funcId": "title_setting.edit",
+          "funcName": "職務別設定編輯"
+        },
+        {
+          "funcId": "title_setting.delete",
+          "funcName": "職務別設定刪除"
+        }
+
+      ]
+    },
+    {
+      "funcId": "employ_setting.view",
+      "funcName": "就業狀況設定可視",
+      "Function": [
+        {
+          "funcId": "employ_setting.add",
+          "funcName": "就業狀況設定新增"
+        },
+        {
+          "funcId": "employ_setting.edit",
+          "funcName": "就業狀況設定編輯"
+        },
+        {
+          "funcId": "employ_setting.delete",
+          "funcName": "就業狀況設定刪除"
+        }
+
+      ]
+    }
+
+  ]}],
+
+  "insertAuthFunc":[
+    {
+      "roleName": "老闆",
+      "funcId":["role_setting.view","role_setting.add", "privacy_setting.view", "testerresult_setting.view", "subject_setting.view"]
+  }],
+  "modifyAuthFunc":[
+    {
+      "roleSeq": "123",
+      "roleName": "老闆",
+      "funcId":["role_setting.view","role_setting.add", "privacy_setting.view", "testerresult_setting.view", "subject_setting.view"]
+  }],
+
+  "authFuncRes":[
+
+      { "functionType":
+      [
+      {
+        "funcId": "role_setting.view",
+        "funcName": "角色設定可視",
+        "Function": [
+          {
+            "funcId": "role_setting.add",
+            "funcName": "角色設定新增"
+          },
+          {
+            "funcId": "role_setting.edit",
+            "funcName":"角色設定編輯"
+          },
+          {
+            "funcId": "role_setting.delete",
+            "funcName": "角色設定刪除"
+          }
+        ]
+      },
+      {
+        "funcId": "tester_setting.view",
+        "funcName": "受測者設定可視",
+        "Function": [
+          {
+            "funcId": "tester_setting.add",
+            "funcName": "受測者設定新增"
+          },
+          {
+            "funcId": "tester_setting.edit",
+            "funcName": "受測者設定編輯"
+          },
+          {
+            "funcId": "tester_setting.delete",
+            "funcName": "受測者設定刪除"
+          }
+
+        ]
+      }
+  ]}],
+
+  "roles": [
+    {
+      "roleName": "HR主管",
+      "editer": "Kenny",
+      "editDate": "2012/03/01",
+      "funcId": [
+        {
+          "authName": "角色設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "Email範本設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "系統說明設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "隱私權政策設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "試卷設定",
+          "add": false,
+          "edit": false,
+          "delete": true,
+          "view": false
+        },
+        {
+          "authName": "題本設定",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "受測者設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "測驗結果查詢",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "題目類別設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "職務別設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "就業狀況設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        }
+      ],
+      "member": [
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Stella Lu 1",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Jenny Lu 1",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Mina Ya 1",
+          "empEmail": "mina.ya@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Kevin Lu 1",
+          "empEmail": "kevin.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Lydia Ya 1",
+          "empEmail": "lydia.ya@tpisoftware.com"
+        }
+      ]
+    },
+    {
+      "roleName": "HR 2",
+      "editer": "Jimmy",
+      "editDate": "2012/03/02",
+      "funcId": [
+        {
+          "authName": "角色設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "Email範本設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "系統說明設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "隱私權政策設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "試卷設定",
+          "add": false,
+          "edit": false,
+          "delete": true,
+          "view": false
+        },
+        {
+          "authName": "題本設定",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "受測者設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "測驗結果查詢",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "題目類別設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "職務別設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "就業狀況設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        }
+      ],
+      "member": [
+        {
+          "empDepName": "數位行銷",
+          "empEnName": "Stella Lu 2",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "數位行銷",
+          "empEnName": "Jenny Lu 2",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "數位行銷",
+          "empEnName": "Mina Ya 2",
+          "empEmail": "mina.ya@tpisoftware.com"
+        },
+        {
+          "empDepName": "數位行銷",
+          "empEnName": "Jenny Lu 2",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "數位行銷",
+          "empEnName": "Mina Ya 2",
+          "empEmail": "mina.ya@tpisoftware.com"
+        }
+      ]
+    },
+    {
+      "roleName": "Admin 1",
+      "editer": "Lucy",
+      "editDate": "2012/03/01",
+      "funcId": [
+        {
+          "authName": "角色設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "Email範本設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "系統說明設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "隱私權政策設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "試卷設定",
+          "add": false,
+          "edit": false,
+          "delete": true,
+          "view": false
+        },
+        {
+          "authName": "題本設定",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "受測者設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "測驗結果查詢",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "題目類別設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "職務別設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "就業狀況設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        }
+      ],
+      "member": [
+        {
+          "empDepName": "智慧健康",
+          "empEnName": "Stella Lu 3",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "智慧健康",
+          "empEnName": "Jenny Lu 3",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "智慧健康",
+          "empEnName": "Mina Ya 3",
+          "empEmail": "mina.ya@tpisoftware.com"
+        },
+        {
+          "empDepName": "智慧健康",
+          "empEnName": "Jeff Lu 3",
+          "empEmail": "jeff.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "智慧健康",
+          "empEnName": "Coco Ya 3",
+          "empEmail": "coco.ya@tpisoftware.com"
+        }
+      ]
+    },
+    {
+      "roleName": "Admin 2",
+      "editer": "Kenny",
+      "editDate": "2012/03/02",
+      "funcId": [
+        {
+          "authName": "角色設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "Email範本設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "系統說明設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "隱私權政策設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "試卷設定",
+          "add": false,
+          "edit": false,
+          "delete": true,
+          "view": false
+        },
+        {
+          "authName": "題本設定",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "受測者設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "測驗結果查詢",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "題目類別設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "職務別設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "就業狀況設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        }
+      ],
+      "member": [
+        {
+          "empDepName": "金融",
+          "empEnName": "Stella Lu 4",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "金融",
+          "empEnName": "Jenny Lu 4",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "金融",
+          "empEnName": "Mina Ya 4",
+          "empEmail": "mina.ya@tpisoftware.com"
+        },
+        {
+          "empDepName": "金融",
+          "empEnName": "Cindy Lu 4",
+          "empEmail": "cindy.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "金融",
+          "empEnName": "Celia Ya 4",
+          "empEmail": "celia.ya@tpisoftware.com"
+        }
+      ]
+    },
+    {
+      "roleName": "Admin 3",
+      "editer": "Kenny",
+      "editDate": "2012/03/05",
+      "funcId": [
+        {
+          "authName": "角色設定",
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "view": true
+        },
+        {
+          "authName": "Email範本設定",
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "view": true
+        },
+        {
+          "authName": "系統說明設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "隱私權政策設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "試卷設定",
+          "add": false,
+          "edit": false,
+          "delete": true,
+          "view": false
+        },
+        {
+          "authName": "題本設定",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "受測者設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "測驗結果查詢",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "題目類別設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "職務別設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "就業狀況設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        }
+      ],
+      "member": [
+        {
+          "empDepName": "AI",
+          "empEnName": "Stella Lu 5",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "AI",
+          "empEnName": "Jenny Lu 5",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "AI",
+          "empEnName": "Mina Ya 5",
+          "empEmail": "mina.ya@tpisoftware.com"
+        },
+        {
+          "empDepName": "AI",
+          "empEnName": "Lulu Lu 5",
+          "empEmail": "lulu.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "AI",
+          "empEnName": "Lala Ya 5",
+          "empEmail": "lala.ya@tpisoftware.com"
+        }
+      ],
+      "id": 1617160142693
+    },
+    {
+      "roleName": "Admin 4",
+      "editer": "Kevin",
+      "editDate": "2012/03/02",
+      "funcId": [
+        {
+          "authName": "角色設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "Email範本設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "系統說明設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "隱私權政策設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "試卷設定",
+          "add": false,
+          "edit": false,
+          "delete": true,
+          "view": false
+        },
+        {
+          "authName": "題本設定",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "受測者設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "測驗結果查詢",
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "view": true
+        },
+        {
+          "authName": "題目類別設定",
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "職務別設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        },
+        {
+          "authName": "就業狀況設定",
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "view": false
+        }
+      ],
+      "member": [
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Stella Lu 6",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Jenny Lu 6",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Mina Ya 6",
+          "empEmail": "mina.ya@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Janice Lu 6",
+          "empEmail": "janice.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Laura Ya 6",
+          "empEmail": "laura.ya@tpisoftware.com"
+        }
+      ]
+    }
+  ],
+  "addRoles": [
+    {
+      "roleName": "HR 20",
+      "funcId": [
+        [
+          {
+            "authName": "角色設定",
+            "add": true,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "Email範本設定",
+            "add": false,
+            "edit": true,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "系統說明設定",
+            "add": true,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "隱私權政策設定",
+            "add": false,
+            "edit": true,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "試卷設定",
+            "add": true,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "題本設定",
+            "add": true,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "受測者設定",
+            "add": false,
+            "edit": true,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "測驗結果查詢",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": true
+          },
+          {
+            "authName": "題目類別設定",
+            "add": true,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "職務別設定",
+            "add": false,
+            "edit": true,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "就業狀況設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": true
+          }
+        ]
+      ],
+      "id": 1617089885698
+    },
+    {
+      "roleName": "HR 1",
+      "funcId": [
+        [
+          {
+            "authName": "角色設定",
+            "add": true,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "Email範本設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "系統說明設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "隱私權政策設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "試卷設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "題本設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "受測者設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "測驗結果查詢",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "題目類別設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "職務別設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          },
+          {
+            "authName": "就業狀況設定",
+            "add": false,
+            "edit": false,
+            "delete": false,
+            "view": false
+          }
+        ]
+      ],
+      "id": 1617091596044
+    }
+  ],
+  "listRoles": [
+    {
+      "roleName": "HR主管",
+      "member": [
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Stella Lu",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Jenny Lu",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empDepName": "營運管理處",
+          "empEnName": "Mina Ya",
+          "empEmail": "mina.ya@tpisoftware.com"
+        }
+      ]
+    }
+  ],
+  "ERPEmpResBody": [
+    {
+      "depId": 1,
+      "depName": "金融科技創新應用處",
+      "member": [
+        {
+          "empId": 101,
+          "empName": "林杰傑",
+          "empEnName": "JJ Lin",
+          "empEmail": "jj.lin@tpisoftware.com"
+        },
+        {
+          "empId": 102,
+          "empName": "吳露西",
+          "empEnName": "Lucy Wu",
+          "empEmail": "lucy.wu@tpisoftware.com"
+        },
+        {
+          "empId": 103,
+          "empName": "張解謎",
+          "empEnName": "Jimmy Chang",
+          "empEmail": "jimmy.chang@tpisoftware.com"
+        },
+        {
+          "empId": 104,
+          "empName": "林艾娃",
+          "empEnName": "Eva Lin",
+          "empEmail": "eva.lin@tpisoftware.com"
+        },
+        {
+          "empId": 105,
+          "empName": "周凱莉",
+          "empEnName": "Kelly Tsou",
+          "empEmail": "kelly.tsou@tpisoftware.com"
+        }
+      ]
+    },
+    {
+      "depId": 2,
+      "depName": "智慧聯網應用發展處",
+      "member": [
+        {
+          "empId": 101,
+          "empName": "許提姆",
+          "empEnName": "Tim Hsu",
+          "empEmail": "tim.hsu@tpisoftware.com"
+
+        },
+        {
+          "empId": 102,
+          "empName": "莊語欣",
+          "empEnName": "Guhim Chuang",
+          "empEmail": "guhim.chuang@tpisoftware.com"
+        },
+        {
+          "empId": 103,
+          "empName": "張雷娜",
+          "empEnName": "Lena Zhang",
+          "empEmail": "lena.zhang@tpisoftware.com"
+        },
+        {
+          "empId": 104,
+          "empName": "陳宜達",
+          "empEnName": "Eda Chen",
+          "empEmail": "eda.chen@tpisoftware.com"
+        },
+        {
+          "empId": 105,
+          "empName": "游艾米",
+          "empEnName": "Amy You",
+          "empEmail": "amy.you@tpisoftware.com"
+        }
+      ]
+    },
+    {
+      "depId": 3,
+      "depName": "營運管理處",
+      "member": [
+        {
+          "empId": 301,
+          "empName": "盧戴拉",
+          "empEnName": "Stella Lu",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empId": 302,
+          "empName": "盧珍妮",
+          "empEnName": "Jenny Lu",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empId": 303,
+          "empName": "葉米納",
+          "empEnName": "Mina Ya",
+          "empEmail": "mina.ya@tpisoftware.com"
+        },
+        {
+          "empId": 304,
+          "empName": "林麗雅",
+          "empEnName": "Cecillia Lin",
+          "empEmail": "cecillia.lin@tpisoftware.com"
+        },
+        {
+          "empId": 305,
+          "empName": "黃喬伊",
+          "empEnName": "Joy Huang",
+          "empEmail": "joy.huang@tpisoftware.com"
+        }
+      ]
+    },
+    {
+      "depId": 4,
+      "depName": "營運管理處",
+      "member": [
+        {
+          "empId": 401,
+          "empName": "盧戴拉",
+          "empEnName": "Stella Lu",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empId": 402,
+          "empName": "盧珍妮",
+          "empEnName": "Jenny Lu",
+          "empEmail": "jenny.lu@tpisoftware.com"
+        },
+        {
+          "empId": 403,
+          "empName": "葉米納",
+          "empEnName": "Mina Ya",
+          "empEmail": "mina.ya@tpisoftware.com"
+        },
+        {
+          "empId": 404,
+          "empName": "林麗雅",
+          "empEnName": "Cecillia Lin",
+          "empEmail": "cecillia.lin@tpisoftware.com"
+        },
+        {
+          "empId": 405,
+          "empName": "黃喬伊",
+          "empEnName": "Joy Huang",
+          "empEmail": "joy.huang@tpisoftware.com"
+        }
+      ]
+    },
+    {
+      "depId": 5,
+      "depName": "營運管理處",
+      "member": [
+        {
+          "empId": 301,
+          "empName": "盧戴拉",
+          "empEnName": "Stella Lu",
+          "empEmail": "stella.lu@tpisoftware.com"
+        },
+        {
+          "empId": 302,
+          "empName": "盧珍妮",
+          "empEnName": "Jenny Lu",
+          "empEmail": "jenny.lu@tpisoftware.com"
+
+        },
+        {
+          "empId": 303,
+          "empName": "葉米納",
+          "empEnName": "Mina Ya",
+          "empEmail": "mina.ya@tpisoftware.com"
+
+        },
+        {
+          "empId": 304,
+          "empName": "林麗雅",
+          "empEnName": "Cecillia Lin",
+          "empEmail": "cecillia.lin@tpisoftware.com"
+        },
+        {
+          "empId": 305,
+          "empName": "黃喬伊",
+          "empEnName": "Joy Huang",
+          "empEmail": "joy.huang@tpisoftware.com"
+        }
+      ]
+    }
+  ],
+  "MemberResBody": [
+    {
+      "depId": 1,
+      "depName": "金融科技創新應用處",
+      "member": [
+        {
+          "empId": 101,
+          "empName": "林杰傑",
+          "empEnName": "JJ Lin",
+          "empEmail": "jj.lin@tpisoftware.com"
+
+        },
+        {
+          "empId": 102,
+          "empName": "吳露西",
+          "empEnName": "Lucy Wu",
+          "empEmail": "lucy.wu@tpisoftware.com"
+
+        },
+        {
+          "empId": 103,
+          "empName": "張解謎",
+          "empEnName": "Jimmy Chang",
+          "empEmail": "jimmy.chang@tpisoftware.com"
+        },
+        {
+          "empId": 104,
+          "empName": "林艾娃",
+          "empEnName": "Eva Lin",
+          "empEmail": "eva.lin@tpisoftware.com"
+        },
+        {
+          "empId": 105,
+          "empName": "周凱莉",
+          "empEnName": "Kelly Tsou",
+          "empEmail": "kelly.tsou@tpisoftware.com"
+        }
+      ]
+    },
+    {
+      "depId": 2,
+      "depName": "智慧聯網應用發展處",
+      "depEmp": [
+        {
+          "empCode": 101,
+          "empName": "許提姆",
+          "empEnName": "Tim Hsu",
+          "empEmail": "tim.hsu@tpisoftware.com"
+
+        },
+        {
+          "empCode": 102,
+          "empName": "莊語欣",
+          "empEnName": "Guhim Chuang",
+          "empEmail": "guhim.chuang@tpisoftware.com"
+
+        },
+        {
+          "empCode": 103,
+          "empName": "張雷娜",
+          "empEnName": "Lena Zhang",
+          "empEmail": "lena.zhang@tpisoftware.com"
+
+        },
+        {
+          "empCode": 104,
+          "empName": "陳宜達",
+          "empEnName": "Eda Chen",
+          "empEmail": "eda.chen@tpisoftware.com"
+
+        },
+        {
+          "empCode": 105,
+          "empName": "游艾米",
+          "empEnName": "Amy You",
+          "empEmail": "amy.you@tpisoftware.com"
+
+        }
+      ]
+    },
+    {
+      "depId": 3,
+      "depName": "營運管理處",
+      "depEmp": [
+        {
+          "empCode": 301,
+          "empName": "盧戴拉",
+          "empEnName": "Stella Lu",
+          "empEmail": "stella.lu@tpisoftware.com"
+
+        },
+        {
+          "empCode": 302,
+          "empName": "盧珍妮",
+          "empEnName": "Jenny Lu",
+          "empEmail": "jenny.lu@tpisoftware.com"
+
+        },
+        {
+          "empCode": 303,
+          "empName": "葉米納",
+          "empEnName": "Mina Ya",
+          "empEmail": "mina.ya@tpisoftware.com"
+
+        },
+        {
+          "empCode": 304,
+          "empName": "林麗雅",
+          "empEnName": "Cecillia Lin",
+          "empEmail": "cecillia.lin@tpisoftware.com"
+
+        },
+        {
+          "empCode": 305,
+          "empName": "黃喬伊",
+          "empEnName": "Joy Huang",
+          "empEmail": "joy.huang@tpisoftware.com"
+
+        }
+      ]
+    },
+    {
+      "depId": 4,
+      "depName": "營運管理處",
+      "depEmp": [
+        {
+          "empCode": 301,
+          "empName": "盧戴拉",
+          "empEnName": "Stella Lu",
+          "empEmail": "stella.lu@tpisoftware.com"
+
+        },
+        {
+          "empCode": 302,
+          "empName": "盧珍妮",
+          "empEnName": "Jenny Lu",
+          "empEmail": "jenny.lu@tpisoftware.com"
+
+        },
+        {
+          "empCode": 303,
+          "empName": "葉米納",
+          "empEnName": "Mina Ya",
+          "empEmail": "mina.ya@tpisoftware.com"
+
+        },
+        {
+          "empCode": 304,
+          "empName": "林麗雅",
+          "empEnName": "Cecillia Lin",
+          "empEmail": "cecillia.lin@tpisoftware.com"
+
+        },
+        {
+          "empCode": 305,
+          "empName": "黃喬伊",
+          "empEnName": "Joy Huang",
+          "empEmail": "joy.huang@tpisoftware.com"
+
+        }
+      ]
+    },
+    {
+      "depId": 5,
+      "depName": "營運管理處",
+      "depEmp": [
+        {
+          "empCode": 301,
+          "empName": "盧戴拉",
+          "empEnName": "Stella Lu",
+          "empEmail": "stella.lu@tpisoftware.com"
+
+        },
+        {
+          "empCode": 302,
+          "empName": "盧珍妮",
+          "empEnName": "Jenny Lu",
+          "empEmail": "jenny.lu@tpisoftware.com"
+
+        },
+        {
+          "empCode": 303,
+          "empName": "葉米納",
+          "empEnName": "Mina Ya",
+          "empEmail": "mina.ya@tpisoftware.com"
+
+        },
+        {
+          "empCode": 304,
+          "empName": "林麗雅",
+          "empEnName": "Cecillia Lin",
+          "empEmail": "cecillia.lin@tpisoftware.com"
+
+        },
+        {
+          "empCode": 305,
+          "empName": "黃喬伊",
+          "empEnName": "Joy Huang",
+          "empEmail": "joy.huang@tpisoftware.com"
+
+        }
+      ]
+    }
+  ],
+  "participants": [
+  ],
+  "testsTypeList": {
+    "header": {
+      "txSn": "9823e94b83b14008bb425d7d75d0c536",
+      "txDate": "20210412T165353+0800",
+      "returnCode": "F0000",
+      "returnMsg": "成功"
+    },
+    "body": {
+      "testsTypeList": [
+        {
+          "testsType": "1",
+          "testsTypeName": "類別 1"
+        },
+        {
+          "testsType": "2",
+          "testsTypeName": "類別 2"
+        },
+        {
+          "testsType": "3",
+          "testsTypeName": "類別 3"
+        },
+        {
+          "testsType": "4",
+          "testsTypeName": "類別 4"
+        }
+      ]
+    }
+  }
+}

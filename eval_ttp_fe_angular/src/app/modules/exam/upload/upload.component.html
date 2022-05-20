@@ -1,0 +1,155 @@
+<app-process></app-process>
+<main class="content inner-bg">
+  <div class="container t-box">
+    <div class="row content-inner">
+      <div class="outter">
+        <div class="name-box">
+          <div class="name-t-title">
+            <span class="bg"></span>
+            <div class="txt">{{ software }}測驗</div>
+          </div>
+          <div class="page-ti-box page-ti"></div>
+        </div>
+        <div class="timer-box">
+          <div class="timer">
+            <i class="icons-ic-stopwatch-white mr-2"></i>
+            {{ vm.hour }}:{{ vm.min }}:{{ vm.sec }}
+          </div>
+          <div class="timer-ar ml-4"></div>
+        </div>
+        <div class="frame-task-back">
+          <div class="task-frame">
+            <div class="general-form">
+              <form [formGroup]="vm.uploadForm">
+                <!--檔案上傳區塊-->
+                <h3>檔案上傳題</h3>
+                <!--上傳題 2-->
+                <div class="task-exam">
+                  <div class="exam-ti">
+                    <div class="exam-box">
+                      <p class="mr-2">1.</p>
+                      <div>
+                        <!-- 此為錯誤訊息，若需顯示錯誤訊息請在class加“d-none" -->
+                        <p>
+                          請依據題目內容進行程式碼編輯後上傳作答結果。<span
+                            class="error-txt"
+                            >未作答</span
+                          >
+                        </p>
+                        <!--圖形題所在，若非圖形題可在class加"d-none"或移除此div區塊-->
+                        <div class="img-container">
+                          <img
+                            src="../../../../assets/images/task-img/picture3.png"
+                            alt="圖形題一"
+                            class="exam-img"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <div class="form-group ais">
+                      <div class="custom-file">
+                        <input
+                          type="file"
+                          class="custom-file-input"
+                          id="customFile"
+                        />
+                        <label
+                          for="customFile"
+                          data-browse="選擇檔案"
+                          class="custom-file-label"
+                          placeholder="檔案上傳"
+                          >選擇檔案</label
+                        >
+                      </div>
+                      <div class="form-text">檔案格式：限JPG/PNG/PDF/DOCX</div>
+                      <div class="invalid-feedback">錯誤提示訊息</div>
+                    </div>
+                  </div>
+                </div>
+                <!--上傳題 2-->
+                <div class="task-exam">
+                  <div class="exam-ti">
+                    <div class="exam-box">
+                      <p class="mr-2">2.</p>
+                      <div>
+                        <!-- 此為錯誤訊息，若需顯示錯誤訊息請在class加“d-none" -->
+                        <p>
+                          請依據題目內容進行程式碼編輯後上傳作答結果。<span
+                            class="error-txt d-none"
+                            >未作答</span
+                          >
+                        </p>
+                        <!--圖形題所在，若非圖形題可在class加"d-none"或移除此div區塊-->
+                        <div class="img-container">
+                          <img
+                            src="../../../../assets/images/task-img/picture3.png"
+                            alt="圖形題一"
+                            class="exam-img"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <div class="form-group ais">
+                      <div class="custom-file">
+                        <input
+                          type="file"
+                          class="custom-file-input"
+                          id="customFile"
+                        />
+                        <label
+                          for="customFile"
+                          data-browse="選擇檔案"
+                          class="custom-file-label"
+                          placeholder="檔案上傳"
+                          >選擇檔案</label
+                        >
+                      </div>
+                      <div class="form-text">檔案格式：限JPG/PNG/PDF/DOCX</div>
+                      <div class="invalid-feedback">錯誤提示訊息</div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!--BTNS-->
+            <div class="text-center frame-btn-box">
+              <button
+                type="button"
+                class="btn btn-secondary mr-3"
+                (click)="back()"
+              >
+                <!-- <a href="C-01.3a.html" class=""> -->
+                <span class="bg"></span>
+                <div class="txt">上一頁</div>
+                <!-- </a> -->
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="submit()"
+                data-target="#uncompleted"
+                data-toggle="modal"
+              >
+                <!-- <a href="C-01.8.html" class=""> -->
+                <span class="bg"></span>
+                <div class="txt">送出</div>
+                <!-- </a> -->
+              </button>
+            </div>
+          </div>
+        </div>
+        <app-uncompleted-modal
+          class="modal fade modal-pop"
+          id="uncompleted"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        ></app-uncompleted-modal>
+      </div>
+    </div>
+  </div>
+</main>

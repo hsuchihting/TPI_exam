@@ -1,0 +1,149 @@
+<!-- <p>add-tests-group works!</p> -->
+<mat-card>
+  <form [formGroup]="vm.addTestGroupForm">
+    <div class="row">
+      <div class="col-9" style="left: 20px;">
+        <br />
+        <label class="col-3" style="left: 20px;"><span style="color: red;">*</span>題本名稱</label>
+        <mat-form-field style="right: 60px;">
+          <mat-label></mat-label>
+            <input
+              formControlName="addTestsGroupName"
+              name="roleFilter"
+              type="text"
+              matInput
+            />
+            <mat-error *ngIf="vm.addTestsGroupName?.invalid && vm.addTestsGroupName?.touched || vm.addTestsGroupName?.dirty">
+              <mat-error *ngIf="vm.addTestsGroupName!.errors?.required" >不可為空，請填入！</mat-error>
+              <mat-error *ngIf="vm.addTestsGroupName!.errors?.maxlength" >字數不可超過100字！</mat-error>
+              <mat-error *ngIf="vm.addTestsGroupName!.errors?.matchLangNum">請輸入中/英文/數字</mat-error>
+            </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-3"></div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <button
+        color="primary"
+        mat-flat-button
+        type="button"
+        style="margin: 20px;"
+        (click)="vm.addTestGroup()"
+        >
+          儲存
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="pull-right"
+          (click)="vm.backTestBookHome()"
+        >
+          離開
+        </button>
+      </div>
+    </div>
+  </form>
+</mat-card>
+<div class="row">
+    <div class="col-6">
+      <label class="col-4" style="left: 56px;"><span style="color: red;">*</span>題目類別：</label>
+        <mat-form-field class="col-8">
+          <mat-label></mat-label>
+          <mtx-select
+          [items]="vm.testsTypeList"
+          bindLabel="testsTypeName"
+          bindValue="testsType"
+          [(ngModel)]="vm.testsTypeNumber"
+          (ngModelChange)="vm.changeTypeList($event)"
+          >
+          </mtx-select>
+        </mat-form-field>
+        <label class="col-4" style="left: 56px;"><span style="color: red;">*</span>試卷名稱：</label>
+        <mat-form-field class="col-8">
+          <mat-label></mat-label>
+          <mtx-select
+          [items]="vm.testsSelectList"
+          bindLabel="testsName"
+          bindValue="testsId"
+          [(ngModel)]="vm.testsSelectNumber"
+          (ngModelChange)="vm.changeSelectList($event)"
+          >
+          </mtx-select>
+        </mat-form-field>
+    </div>
+    <div class="col-6">
+      <button
+      color="primary"
+      mat-flat-button
+      type="button"
+      style="top: 60px;"
+      (click)="vm.getTests()"
+      >
+        添加試卷
+      </button>
+    </div>
+</div>
+<div class="section data">
+  <table mat-table #table
+       cdkDropList
+       cdkDropListOrientation="vertical"
+       (cdkDropListDropped)="vm.onDrop($event)"
+       [dataSource]="vm.dataSource"
+       >
+
+    <ng-container matColumnDef="order">
+      <th mat-header-cell *matHeaderCellDef> 項次 </th>
+      <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="testsTypeName">
+      <th mat-header-cell cdkDrag *matHeaderCellDef> 題目類別 </th>
+      <td mat-cell *matCellDef="let element"> {{element.testsTypeName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="testsName">
+      <th mat-header-cell cdkDrag *matHeaderCellDef> 試卷名稱 </th>
+      <td mat-cell *matCellDef="let element"> {{element.testsName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="testTime">
+      <th mat-header-cell cdkDrag *matHeaderCellDef> 施測時間 </th>
+      <div>
+        <td mat-cell *matCellDef="let element;">
+          {{element.testDTime === undefined ? null : element.testDTime + '/日'}}
+          {{element.testHTime !== '0' && element.testHTime!== undefined ? element.testHTime + '/ 小時' : null}}
+          {{element.testMTime !== '0' && element.testMTime!== undefined ? element.testMTime + '/ 分鐘' : null}}
+        </td>
+      </div>
+      <!-- <div>
+        <td mat-cell *matCellDef="let element"> {{element.testMTime}} / 分鐘</td>
+      </div> -->
+    </ng-container>
+
+    <ng-container matColumnDef="operating">
+      <th [appStyleWidth]="'400px'" style="text-align: center" mat-header-cell cdkDrag *matHeaderCellDef> 操作 </th>
+      <td style="text-align: center" mat-cell *matCellDef="let element; let i = index">
+        <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="vm.onDelete(i)"
+        >
+        移除試卷
+        </button>
+        <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/main/exam/test-paper/view-paper']"
+        (click)="vm.onView(element.testsId)"
+        >
+        檢視
+        </button>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="vm.columns"></tr>
+    <tr mat-row cdkDrag [cdkDragData]=row  *matRowDef="let row ; columns: vm.columns;"></tr>
+  </table>
+</div>

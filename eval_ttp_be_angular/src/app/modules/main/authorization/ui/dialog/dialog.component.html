@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>{{titleDialog}}</h2>
+<mat-dialog-content class="mat-typography">
+
+  <mat-card>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="col-12">
+          <input
+            name="roleFilter"
+            type="text"
+            matInput
+            placeholder="角色名稱"
+          />
+        </mat-form-field>
+        <mat-form-field class="col-12">
+            <input
+              name="roleFilter"
+              type="text"
+              matInput
+              placeholder="角色姓名"
+            />
+          </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="col-12">
+          <mat-label>選擇日期</mat-label>
+          <input
+            matInput
+            (click)="picker.open()"
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-12">
+          <mat-label>TextArea</mat-label>
+          <textarea matInput rows="2" placeholder="TextArea"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary"
+    (click)="confirm()" class="mr-1">確定</button>
+  <button mat-raised-button mat-dialog-close>取消</button>
+</mat-dialog-actions>
+  

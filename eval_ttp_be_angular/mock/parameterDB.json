@@ -1,0 +1,154 @@
+{
+  "categories": [
+    {
+      "stId": 1,
+      "stNameCh": "SQL測驗",
+      "stNameEn": "SQL test"
+    },
+    {
+      "stId": 2,
+      "stNameCh": "Vue.js",
+      "stNameEn": "Vue.js test"
+    },
+    {
+      "stId": 3,
+      "stNameCh": "Angular測驗",
+      "stNameEn": "Angular test"
+    },
+    {
+      "stId": 4,
+      "stNameCh": "C#測驗",
+      "stNameEn": "C# test"
+    },
+    {
+      "stId": 5,
+      "stNameCh": "Java測驗",
+      "stNameEn": "Java test"
+    },
+    {
+      "stId": 6,
+      "stNameCh": "JavaScript",
+      "stNameEn": "JavaScript test"
+    },
+    {
+      "stId": 7,
+      "stNameCh": "邏輯測驗",
+      "stNameEn": "test"
+    },
+    {
+      "stId": 8,
+      "stNameCh": "職能測驗",
+      "stNameEn": "test2",
+      "editable": "0"
+    },
+    {
+      "stNameCh": "Java",
+      "stNameEn": "Java test",
+      "id": 1617072868561
+    }
+  ],
+  "position": [
+    {
+      "titleId": 1,
+      "titleNameCh": "Vue工程師"
+    },
+    {
+      "titleId": 2,
+      "titleNameCh": "前端工程師"
+    },
+    {
+      "titleId": 3,
+      "titleNameCh": "UI/UX設計師"
+    },
+    {
+      "id": 4,
+      "positionName": "C#工程師"
+    },
+    {
+      "id": 5,
+      "positionName": "資料庫分析師"
+    },
+    {
+      "id": 6,
+      "positionName": ".NET工程師"
+    },
+    {
+      "id": 7,
+      "positionName": "專案經理"
+    },
+    {
+      "id": 8,
+      "positionName": "行政助理"
+    },
+    {
+      "positionName": "HR",
+      "id": 1616513981211
+    },
+    {
+      "positionName": "HR2",
+      "id": 1616514023189
+    },
+    {
+      "positionName": "test",
+      "id": 1616579262953
+    },
+    {
+      "positionName": "test66",
+      "id": 1616579955011
+    },
+    {
+      "positionName": "1111",
+      "id": 1616580108304
+    }
+  ],
+  "employment": [
+    {
+      "esId": 1,
+      "esName": "有工作經驗的待業者"
+    },
+    {
+      "esId": 2,
+      "esName": "無工作經驗的待業者"
+    },
+    {
+      "id": 3,
+      "employeeStatus": "在職"
+    },
+    {
+      "id": 4,
+      "employeeStatus": "在職"
+    },
+    {
+      "id": 5,
+      "employeeStatus": "在職"
+    },
+    {
+      "id": 6,
+      "employeeStatus": "在職"
+    },
+    {
+      "id": 7,
+      "employeeStatus": "無工作經驗的待業者"
+    },
+    {
+      "id": 8,
+      "employeeStatus": "有工作經驗的待業者"
+    },
+    {
+      "employeeStatus": "待業中",
+      "id": 1616517659535
+    },
+    {
+      "employeeStatus": "test",
+      "id": 1616579297559
+    },
+    {
+      "employeeStatus": "test66",
+      "id": 1616580038584
+    },
+    {
+      "employeeStatus": "1111",
+      "id": 1616580086033
+    }
+  ]
+}

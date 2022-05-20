@@ -1,0 +1,9 @@
+{
+  "/betpievalapi/": {
+    "target": "http://10.20.30.226:1001/betpievalapi",
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "secure": false,
+    "pathRewrite": {"^/betpievalapi" : ""}
+  }
+}

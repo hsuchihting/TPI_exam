@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>確認是否刪除</h1>
+<div mat-dialog-content>此{{titleDialog}}將於確認後刪除，請確認是否仍要執行刪除作業？</div>
+<div mat-dialog-actions style="display: flex; justify-content: center;">
+  <button mat-button mat-dialog-close mat-raised-button color="warn" (click)="delete()"
+  >確定</button>
+  <button mat-button mat-dialog-close mat-raised-button color="primary" (click)="cancel()"
+  >取消</button>
+</div>
+

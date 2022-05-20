@@ -1,0 +1,118 @@
+<mat-card>
+  <div class="row">
+    <div class="col-12">
+      <label class="col-2">
+        <span>題本編號</span>
+      </label>
+      <span class="col-10">{{ vm.testsGroupId }}</span>
+    </div>
+
+    <div class="col-12">
+      <label class="col-2">
+        <span style="color: red;">*</span>
+        <span>題本名稱</span>
+      </label>
+      <span class="col-10">{{ vm.testsGroupName }}</span>
+    </div>
+
+    <div class="col-12">
+      <label class="col-2">
+        <span>最後更新人員</span>
+      </label>
+      <span class="col-10">{{ vm.updateUserName }}</span>
+    </div>
+
+    <div class="col-12">
+      <label class="col-2">
+        <span>最後更新人員信箱</span>
+      </label>
+      <span class="col-10">{{ vm.updateEmail }}</span>
+    </div>
+
+    <div class="col-12">
+      <label class="col-2">
+        <span>最後更新時間</span>
+      </label>
+      <span class="col-10">{{ vm.updateDatetime }}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button
+        mat-flat-button
+        color="primary"
+        class="pull-right"
+        style="margin-right: 15px"
+        routerLink="/main/exam/test-book"
+      >
+        關閉
+      </button>
+    </div>
+  </div>
+</mat-card>
+<div style="margin-top: 10px">
+  <table mat-table matSort [dataSource]="vm.dataSource">
+    <ng-container matColumnDef="testsId">
+      <th mat-header-cell *matHeaderCellDef>項次</th>
+      <td mat-cell *matCellDef="let element; let itemIndex = index">
+        {{ itemIndex + 1 }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="testsTypeName">
+      <th mat-header-cell *matHeaderCellDef>題目類別</th>
+      <td mat-cell *matCellDef="let element">{{ element.testsTypeName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="testsName">
+      <th mat-header-cell *matHeaderCellDef>試卷名稱</th>
+      <td mat-cell *matCellDef="let element">{{ element.testsName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="testDTime">
+      <th mat-header-cell *matHeaderCellDef>施測時間</th>
+      <td mat-cell *matCellDef="let element">{{ element.testDTime }}/日</td>
+    </ng-container>
+    <ng-container matColumnDef="testHTime">
+      <th mat-header-cell *matHeaderCellDef>施測時間</th>
+      <td mat-cell *matCellDef="let element">{{ element.testHTime}}/時</td>
+    </ng-container>
+    <ng-container matColumnDef="testTime">
+      <th mat-header-cell *matHeaderCellDef>施測時間</th>
+      <th mat-header-cell cdkDrag *matHeaderCellDef> 施測時間</th>
+      <td mat-cell *matCellDef="let element;">
+        {{element.testDTime === undefined ? null : element.testDTime + '/日'}}
+        {{element.testHTime !== '0' && element.testHTime!== undefined ? element.testHTime + '/ 小時' : null}}
+        {{element.testMTime !== '0' && element.testMTime!== undefined ? element.testMTime + '/ 分鐘' : null}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th
+        [appStyleWidth]="'400px'"
+        style="text-align: center"
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        操作
+      </th>
+      <td
+        style="text-align: center"
+        mat-cell
+        *matCellDef="let element; let i = index"
+      >
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="view(element.testsId)"
+        >
+          檢視
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="vm.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: vm.displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    #paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

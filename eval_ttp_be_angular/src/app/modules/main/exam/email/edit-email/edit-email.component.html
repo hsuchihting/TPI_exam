@@ -1,0 +1,126 @@
+<!-- <p>edit-email works!</p> -->
+<mat-card>
+  <div class="row">
+    <div class="col-6">
+      <label class="col-3" style="margin-top: 18px;"><span style="color: red;">*</span>Email類型</label>
+        <mat-radio-group class="col-9" [(ngModel)]="vm.selectedRole">
+          <mat-label></mat-label>
+          <mat-radio-button
+            value="H"
+            class="col-4"
+            color="primary"
+            class="example-margin"
+            style="margin-right: 20px"
+          >HR</mat-radio-button>
+          <mat-radio-button
+            value="M"
+            class="col-4"
+            color="primary"
+            class="example-margin"
+            style="margin-right: 20px"
+          >主管</mat-radio-button>
+          <mat-radio-button
+            value="E"
+            class="col-4"
+            color="primary"
+            class="example-margin"
+            style="margin-right: 20px"
+          >受測者</mat-radio-button>
+        </mat-radio-group>
+    </div>
+  </div>
+  <form [formGroup]="vm.editEmailForm">
+    <div class="row">
+      <div class="col-6">
+        <br />
+        <label class="col-3"><span style="color: red;">*</span>信件主旨</label>
+        <mat-form-field class="col-9">
+          <mat-label></mat-label>
+          <input
+            formControlName="editEmailPurpose"
+            name="roleFilter"
+            type="text"
+            matInput
+            placeholder="請輸入信件主旨"
+          />
+          <mat-error *ngIf="vm.editEmailPurpose?.invalid && vm.editEmailPurpose?.touched || vm.editEmailPurpose?.dirty">
+            <mat-error *ngIf="vm.editEmailPurpose!.errors?.required">不可為空，請填入！</mat-error>
+            <mat-error *ngIf="vm.editEmailPurpose!.errors?.maxlength">字數不可超過300字！</mat-error>
+          </mat-error>
+        </mat-form-field>
+        <label class="col-3"><span style="color: white;">*</span>動態參數</label>
+        <a href="" class="link" (click)="insertContent($event, '${USER_NAME}')" style="margin-left: 15px">受測者姓名</a>
+        <a href="" class="link" (click)="insertContent($event, '${TB_NAME}')" style="margin-left: 15px">題本名稱</a>
+        <a href="" class="link" (click)="insertContent($event, '${F_DATE}')" style="margin-left: 15px">測驗完成日期</a>
+        <a href="" class="link" (click)="insertContent($event, '${EVAL_EMAIL}')" style="margin-left: 10px">受測者Email</a>
+        <div class="col-9">
+        </div>
+      </div>
+      <div class="col-6" style="margin-top: -40px;">
+        <label class="col-3"><span style="color: red;">*</span>範本名稱</label>
+        <mat-form-field class="col-9">
+          <mat-label></mat-label>
+          <input
+            formControlName="editEmailName"
+            name="roleFilter"
+            type="text"
+            matInput
+            placeholder="請輸入範本名稱"
+          />
+          <mat-error *ngIf="vm.editEmailName?.invalid && vm.editEmailName?.touched || vm.editEmailName?.dirty">
+            <mat-error *ngIf="vm.editEmailName!.errors?.required">不可為空，請填入！</mat-error>
+            <mat-error *ngIf="vm.editEmailName!.errors?.maxlength">字數不可超過100字！</mat-error>
+          </mat-error>
+        </mat-form-field>
+        <div style="margin-top: 60px;margin-left: -20px">
+          <a href="" class="link" (click)="insertContent($event, '${EVAL_DATE}')">測驗有效日期</a>
+          <a href="" class="link" (click)="insertContent($event, '${URL}')" style="margin-left: 15px">測驗連結</a>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-left: 15px; margin-top: 18px;">
+      <div class="rol-3">
+        <label><span style="color: red;">*</span>信件內容</label>
+      </div>
+      <div class="col-9" style="margin-left: 60px;">
+        <app-editor
+          formControlName="editEmailContent"
+          #editor2
+          id="editor2"
+          [maxWordLimit]="1000"
+          [maxUploadMbSize2]="1"
+          [imgEtTypeCode]="vm.selectedRole"
+          (addImageUrl)="vm.getImageUrl($event)"
+        ></app-editor>
+        <mat-error *ngIf="vm.editEmailContent?.invalid && vm.editEmailContent?.touched || vm.editEmailContent?.dirty">
+          <mat-error *ngIf="vm.editEmailContent!.errors?.required">不可為空，請填入！</mat-error>
+          <mat-error *ngIf="vm.editEmailContent!.errors?.errorWord">字數不可超過1000字！</mat-error>
+          <mat-error *ngIf="vm.editEmailContent!.errors?.hasChinese">中文必填！</mat-error>
+          <mat-error *ngIf="vm.editEmailContent!.errors?.matchLangNum">請輸入中/英文/數字</mat-error>
+          <mat-error *ngIf="vm.editEmailContent!.errors?.imageMaxPiece">範本圖片數量不可超出3張</mat-error>
+        </mat-error>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button
+      color="primary"
+      mat-flat-button
+      type="button"
+      style="margin: 20px;"
+      (click)="onAdd()"
+      >
+        儲存
+      </button>
+      <button
+      color="primary"
+      mat-flat-button
+      type="button"
+      (click)="vm.backEmailHome()"
+      >
+        取消
+      </button>
+    </div>
+  </div>
+</mat-card>

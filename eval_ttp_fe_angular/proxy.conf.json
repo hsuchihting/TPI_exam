@@ -1,0 +1,9 @@
+{
+  "/tpievalapi/": {
+    "target": "http://10.20.30.226:1002/tpievalapi",
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "secure": false,
+    "pathRewrite": {"^/tpievalapi" : ""}
+  }
+}

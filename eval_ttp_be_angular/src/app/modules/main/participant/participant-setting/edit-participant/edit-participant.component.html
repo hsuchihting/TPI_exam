@@ -1,0 +1,447 @@
+<mat-card>
+  <form [formGroup]="vm.invalidForm" class="row">
+    <!-- 受測者姓名 -->
+      <div class="col-6 ">
+        <label class="col-5"> <span class="dot">*</span> 受測者姓名</label>
+          <mat-form-field class="col-5">
+            <mat-label></mat-label>
+            <input
+              name="roleFilter"
+              type="text"
+              matInput
+              placeholder="請輸入受測者姓名"
+              formControlName="testerName"
+              (keydown.enter)="$event.preventDefault()"
+              />
+            <!-- !vm.invalidForm.controls.name.pristine && -->
+            <mat-error  *ngIf=" vm.invalidForm.controls.testerName.errors?.required">受測者姓名不得為空，請填入！</mat-error>
+            <mat-error  *ngIf=" vm.invalidForm.controls.testerName.errors?.maxlength">受測者姓名不可超過50字，請重新輸入</mat-error>
+            <mat-error  *ngIf=" vm.invalidForm.controls.testerName.hasError('pattern')">受測者姓名格式錯誤，請輸入中/英文</mat-error>
+          </mat-form-field>
+      </div>
+    <!-- 受測代碼(系統產生) -->
+    <div class="col-6">
+      <label class="col-5">受測代碼(系統產生)</label>
+      <mat-form-field class="col-5">
+        <mat-label></mat-label>
+        <input
+          name="roleFilter"
+          type="text"
+          matInput
+          formControlName="testerId"
+          [(ngModel)]="vm.getRandomStr"
+          [readonly]="true"
+          class="randomCode"
+        />
+      </mat-form-field>
+    </div>
+    <!-- 受測者Email -->
+    <div class="col-6">
+      <label class="col-5"> <span class="dot">*</span>受測者Email</label>
+      <mat-form-field class="col-5">
+        <mat-label></mat-label>
+        <input
+          name="roleFilter"
+          type="email"
+          matInput
+          placeholder="請輸入受測者Email"
+          formControlName="testerEmail"
+          (keydown.enter)="$event.preventDefault()"
+
+        />
+        <mat-error *ngIf="vm.invalidForm.controls.testerEmail.errors?.required">受測者Email不得為空，請填入！</mat-error>
+        <mat-error *ngIf="vm.invalidForm.controls.testerEmail.errors?.maxlength">Email長度大於80字請重新輸入</mat-error>
+        <mat-error *ngIf="vm.invalidForm.controls.testerEmail.hasError('pattern')">Email格式錯誤，請重新輸入</mat-error>
+
+      </mat-form-field>
+    </div>
+    <!-- 應徵職務 -->
+    <div class="col-6">
+      <label class="col-4"> <span class="dot">*</span>應徵職務</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.titleList"
+          bindLabel="titlePmName"
+          bindValue="titlePmName"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="titlePmSeq"
+          (keydown.enter)="$event.preventDefault()"
+
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+        <mat-error *ngIf="vm.invalidForm.controls.titlePmSeq.errors?.required">應徵職務為必填</mat-error>
+      </mat-form-field>
+    </div>
+    <!-- 最高學歷 -->
+    <div class="col-6">
+      <label class="col-4">最高學歷</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.educationData"
+          bindLabel="name"
+          bindValue="name"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="education"
+          (keydown.enter)="$event.preventDefault()"
+
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+      </mat-form-field>
+    </div>
+    <!-- 科系 -->
+    <div class="col-6">
+      <label class="col-5"> <span class="dot">*</span>科系</label>
+      <mat-form-field class="col-5">
+        <mat-label></mat-label>
+        <input
+          name="roleFilter"
+          type="text"
+          matInput
+          placeholder="請輸入科系"
+          formControlName="testerDepartment"
+          (keydown.enter)="$event.preventDefault()"
+
+        />
+        <mat-error *ngIf="vm.invalidForm.controls.testerDepartment.errors?.required">科系不得為空，請填入！</mat-error>
+        <mat-error *ngIf="vm.invalidForm.controls.testerDepartment.errors?.maxlength">科系不可超過100字，請重新輸入或請洽管理人員</mat-error>
+        <mat-error *ngIf="vm.invalidForm.controls.testerDepartment.hasError('pattern')">科系格式錯誤，請輸入中/英文</mat-error>
+
+      </mat-form-field>
+    </div>
+    <!-- 就業狀況 -->
+    <div class="col-6">
+      <label class="col-4">就業狀況</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.carrierList"
+          bindLabel="carrierPmName"
+          bindValue="carrierPmName"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="carrierPmSeq"
+          (keydown.enter)="$event.preventDefault()"
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+      </mat-form-field>
+    </div>
+    <!-- 應徵部門 -->
+    <div class="col-6">
+      <label class="col-4"> <span class="dot">*</span>應徵部門</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.depList"
+          bindLabel="depName"
+          bindValue="depName"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="departent"
+          (keydown.enter)="$event.preventDefault()"
+
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+        <mat-error *ngIf="vm.invalidForm.controls.departent.errors?.required" >應徵部門為必填</mat-error>
+      </mat-form-field>
+    </div>
+    <!-- 題本設定 -->
+    <div class="col-6">
+      <label class="col-4"> <span class="dot">*</span>題本設定</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.testsGroupList"
+          bindLabel="testsGroupName"
+          bindValue="testsGroupName"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="testsGroupSeq"
+          (keydown.enter)="$event.preventDefault()"
+
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+        <mat-error *ngIf="vm.invalidForm.controls.testsGroupSeq.errors?.required">題本設定為必填</mat-error>
+      </mat-form-field>
+    </div>
+    <!-- 測驗說明範本 -->
+    <div class="col-6">
+      <label class="col-4"> <span class="dot">*</span>測驗說明範本</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.tdList"
+          bindLabel="tdName"
+          bindValue="tdName"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="tdSeq"
+          (keydown.enter)="$event.preventDefault()"
+          (change)="onChangeTestDialog($event)"
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+        <mat-error  *ngIf="vm.invalidForm.controls.tdSeq.errors?.required">測驗說明範本為必填</mat-error>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        (click)="onOpenTestDialog()"
+        color="primary"
+        class="pull-right"
+      >
+        檢視
+      </button>
+    </div>
+    <!-- 受測截止日 -->
+    <div class="col-6">
+      <mat-form-field class="col-12">
+        <mat-label> <span class="dot">*</span>受測截止日</mat-label>
+        <input
+          matInput
+          (click)="picker.open()"
+          [matDatepicker]="picker"
+          formControlName="testEndDate"
+          (keydown.enter)="$event.preventDefault()"
+
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="vm.invalidForm.controls.testEndDate.errors?.required">受測截止日為必填</mat-error>
+      </mat-form-field>
+    </div>
+    <!-- 受測者Email範本 -->
+    <div class="col-6">
+      <label class="col-4"> <span class="dot">*</span>受測者Email範本</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.testerEtList"
+          bindLabel="testerEtName"
+          bindValue="testerEtName"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="testerEtSeq"
+          (keydown.enter)="$event.preventDefault()"
+          (change)="onChangeEmailDialog($event,0)"
+
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+        <mat-error *ngIf="vm.invalidForm.controls.testerEtSeq.errors?.required">受測者Email範本為必填</mat-error>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        (click)="onOpenParticipantDialog(0)"
+        color="primary"
+        class="pull-right"
+      >
+        檢視
+      </button>
+    </div>
+    <!-- 受測截止日提醒 -->
+    <div class="col-6">
+      <label class="col-4"> <span class="dot">*</span>受測截止日提醒</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.reminderDeadlineData"
+          bindLabel="name"
+          bindValue="name"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+           formControlName="testEndDayNotify"
+           (keydown.enter)="$event.preventDefault()"
+
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+        <mat-error *ngIf="vm.invalidForm.controls.testEndDayNotify.errors?.required">受測截止日提醒為必填</mat-error>
+      </mat-form-field>
+    </div>
+    <!-- 主管Email範本 -->
+    <div class="col-6">
+      <label class="col-4"> <span class="dot">*</span>主管Email範本</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.interviewerEtList"
+          bindLabel="interviewerEtName"
+          bindValue="interviewerEtName"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="interviewerEtSeq"
+          (keydown.enter)="$event.preventDefault()"
+          (change)="onChangeEmailDialog($event,1)"
+
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+        <mat-error *ngIf="vm.invalidForm.controls.interviewerEtSeq.errors?.required">主管Email範本為必填</mat-error>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        (click)="onOpenParticipantDialog(1)"
+        color="primary"
+        class="pull-right"
+      >
+        檢視
+      </button>
+    </div>
+     <!-- 面試官單位 -->
+     <div class="col-6">
+      <label class="col-4"> <span class="dot">*</span>面試官單位</label>
+      <mat-form-field class="col-6" >
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.depList"
+          bindLabel="depName"
+          bindValue="depName"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="interviewer_unit"
+          (keydown.enter)="$event.preventDefault()"
+          (change)='onChangeUnit($event)'
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+        <mat-error *ngIf="vm.invalidForm.controls.interviewer_unit.errors?.required">面試官單位為必填</mat-error>
+      </mat-form-field>
+    </div>
+    <!-- HR Email範本 -->
+    <div class="col-6">
+      <label class="col-4"> <span class="dot">*</span>HR Email範本</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.hrEtList"
+          bindLabel="hrEtName"
+          bindValue="hrEtName"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="hrEtSeq"
+          (keydown.enter)="$event.preventDefault()"
+          (change)="onChangeEmailDialog($event,2)"
+
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+        <mat-error *ngIf="vm.invalidForm.controls.hrEtSeq.errors?.required">HR Email範本為必填</mat-error>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        (click)="onOpenParticipantDialog(2)"
+        color="primary"
+        class="pull-right"
+      >
+        檢視
+      </button>
+    </div>
+    <!-- 面試官 -->
+    <div class="col-6">
+      <label class="col-3"> <span class="dot">*</span>面試官</label>
+      <mat-form-field class="example-chip-list col-9">
+        <mat-label></mat-label>
+        <mat-chip-list [formControl]="vm.interviewerCtrl"  #chipList aria-label="Interviewer selection">
+          <mat-chip
+            *ngFor="let item of vm.interviewerArr"
+            [selectable]="vm.selectable"
+            [removable]="vm.removable"
+            (removed)="vm.remove(item)">
+            {{item.empName}}
+            <mat-icon matChipRemove *ngIf="vm.removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            [formControl]="vm.interviewerCtrl"
+            placeholder="請輸入關鍵字"
+            #interviewerInput
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="vm.separatorKeysCodes"
+            (matChipInputTokenEnd)="vm.add($event)">
+        </mat-chip-list>
+        <mat-error
+        *ngIf="
+         (vm.interviewerArr.length <= 0 || vm.interviewerCtrl.hasError('required')) && !vm.interviewerCtrl.hasError('noPersonError') "
+        >面試官為必填</mat-error
+      >
+      <mat-error
+      *ngIf="vm.interviewerCtrl.hasError('noPersonError')"
+      >無此面試官，請從下拉選單選取</mat-error
+    >
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="vm.selected($event)">
+          <mat-option *ngFor="let item of vm.filteredInterviewer | async" [value]="item.empName">
+            {{item.empName}}
+          </mat-option>
+        </mat-autocomplete>
+        <!-- <mat-error  *ngIf="vm.invalidForm.controls.interviewer.errors?.required">面試官為必填</mat-error> -->
+      </mat-form-field>
+    </div>
+    <!-- <div class="col-6">
+      <label class="col-3"> <span class="dot">*</span>面試官</label>
+      <mat-form-field class="col-9">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.interviewerEtList"
+          bindLabel="name"
+          bindValue="name"
+          [multiple]="true"
+          [required]="vm.required"
+          formControlName="interviewer"
+          (keydown.enter)="$event.preventDefault()"
+        >
+        </mtx-select>
+        <mat-error  *ngIf="vm.invalidForm.controls.interviewer.errors?.required">面試官為必填</mat-error>
+      </mat-form-field>
+    </div> -->
+    <!-- 作答試卷順序(拖曳) -->
+    <!-- <div class="col-5 row ">
+      <label class="col-5">作答試卷順序(拖曳)</label>
+      <div class="drop-container col-5">
+        <div class="drop-area">
+          <div cdkDropList #priorityArea1Group="cdkDropList" [cdkDropListData]="vm.answerTestArr"
+            [cdkDropListConnectedTo]="[priorityArea1Group]" class="drop-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="drop-box" *ngFor="let item of vm.answerTestArr;let i=index" cdkDrag>
+              {{item.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </form>
+
+  <div class=" row justify-content-center ">
+    <div class=" text-center">
+      <button
+        mat-flat-button
+        (click)="saveAndCheckForm()"
+        color="primary"
+        class="btn-save"
+      >
+        儲存
+      </button>
+    </div>
+    <div class=" text-center">
+      <button
+        mat-flat-button
+        routerLink="/main/participant/participant-setting"
+        color="primary"
+        class="btb-cancel"
+      >
+        取消
+      </button>
+    </div>
+  </div>
+</mat-card>

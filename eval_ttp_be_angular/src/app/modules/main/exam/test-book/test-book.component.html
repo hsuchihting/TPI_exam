@@ -1,0 +1,161 @@
+<mat-card>
+  <div class="row">
+    <div class="col-6">
+      <label class="col-2">題本名稱</label>
+      <mat-form-field class="col-10">
+        <mat-label></mat-label>
+        <input
+          [(ngModel)]="this.vm.testBookFilter"
+          name="testsGroupName"
+          type="text"
+          matInput
+          placeholder="請輸入題本名稱"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <label class="col-2">使用狀態</label>
+      <mat-form-field class="col-10">
+        <mat-label></mat-label>
+        <mat-select [(value)]="vm.selected">
+          <mat-option value="">全部</mat-option>
+          <mat-option value="Y">啟用</mat-option>
+          <mat-option value="N">停用</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button
+        #btn_testsgroup_add
+        appCheckAuth
+        [auth_btn]="btn_testsgroup_add"
+        [auth_type]="'btn_testsgroup_add'"
+        mat-flat-button
+        (click)="add()"
+        color="primary"
+        class="pull-right"
+        style="margin-right: 15px"
+        routerLink="add-tests-group"
+      >
+        新增
+      </button>
+      <button
+        mat-flat-button
+        (click)="search($event)"
+        color="primary"
+        class="pull-right"
+      >
+        查詢
+      </button>
+    </div>
+  </div>
+</mat-card>
+<div style="margin-top: 10px">
+  <table mat-table matSort [dataSource]="vm.dataSource">
+    <ng-container matColumnDef="testsGroupId">
+      <th mat-header-cell *matHeaderCellDef>項次</th>
+      <td mat-cell *matCellDef="let itemIndex = index">{{ itemIndex + 1 }}</td>
+    </ng-container>
+    <ng-container matColumnDef="testsGroupName">
+      <th mat-header-cell *matHeaderCellDef>題本名稱</th>
+      <td mat-cell *matCellDef="let element">{{ element.testsGroupName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="createDate">
+      <th mat-header-cell *matHeaderCellDef disableClear>建立時間</th>
+      <td mat-cell *matCellDef="let element">{{ element.createDate | date}}</td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>使用狀態</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button
+            #btn_testsgroup_enable
+            appCheckAuth
+            [auth_radioBtn]="btn_testsgroup_enable"
+            [auth_type]="'btn_testsgroup_enable'"
+            style="margin-top: 15px"
+            [checked]="element.status === 'Y'"
+            value="Y"
+            (change)="vm.editStatus('Y', element.testsGroupId)"
+          ></mat-radio-button
+          >啟用
+
+          <mat-radio-button
+            #btn_testsgroup_disable
+            appCheckAuth
+            [auth_radioBtn]="btn_testsgroup_disable"
+            [auth_type]="'btn_testsgroup_disable'"
+            style="margin-top: 15px; margin-left: 5px"
+            [checked]="element.status === 'N'"
+            value="N"
+            (change)="vm.editStatus('N', element.testsGroupId)"
+          ></mat-radio-button
+          >停用
+        </mat-radio-group>
+      </td></ng-container
+    >
+
+    <ng-container matColumnDef="action">
+      <th
+        [appStyleWidth]="'400px'"
+        style="text-align: center"
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        操作
+      </th>
+      <td
+        style="text-align: center"
+        mat-cell
+        *matCellDef="let element; let i = index"
+      >
+        <button
+          #btn_testsgroup_edit
+          appCheckAuth
+          [auth_btn]="btn_testsgroup_edit"
+          [auth_type]="'btn_testsgroup_edit'"
+          [auth_btnEnable]="element.action == 'Y' ? true : false"
+          mat-flat-button
+          color="primary"
+          (click)="vm.edit(element.testsGroupId)"
+        >
+          編輯
+        </button>
+        <button
+          #btn_testsgroup_del
+          appCheckAuth
+          [auth_btn]="btn_testsgroup_del"
+          [auth_type]="'btn_testsgroup_del'"
+          [auth_btnEnable]="element.action == 'Y' ? true : false"
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="deleteCategory(element.testsGroupId)"
+        >
+          刪除
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          routerLink="view-tests-group"
+          (click)="vm.view(element.testsGroupId)"
+        >
+          檢視
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="vm.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: vm.displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    #paginator
+    [pageIndex]="vm.currentPage - 1"
+    [length]="vm.pageLength"
+    [pageSize]="vm.pageSize"
+    (page)="vm.changePage($event)"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

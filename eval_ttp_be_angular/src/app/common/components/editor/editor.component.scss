@@ -1,0 +1,13 @@
+@import "../../../../theme";
+.tip {
+    color: gray;
+    font-size: 14px;
+}
+
+.formInput_count {
+    color: mat-color($app-primary);
+}
+
+.error {
+    color: red !important;
+}

@@ -1,0 +1,58 @@
+<mat-card>
+  <div class="row">
+    <div class="col-6">
+      <label class="col-3"><span style="color: red;">*</span>題目類別(中)</label>
+      <mat-form-field class="col-9" [formGroup]="this.vm.categoryForm">
+        <mat-label></mat-label>
+        <input
+        formControlName="stNameCh"
+          name="stNameCh"
+          type="text"
+          matInput
+          placeholder="請輸入題目類別(中)"
+        />
+        <mat-error *ngIf="
+        !vm.categoryForm.controls.stNameCh.pristine &&
+        vm.categoryForm.controls.stNameCh.hasError('required')
+      ">此為必填欄位</mat-error>
+        <mat-error *ngIf="
+        !vm.categoryForm.controls.stNameCh.pristine &&
+        vm.categoryForm.controls.stNameCh.hasError('maxlength')
+      ">長度不得超過200個字</mat-error>
+      <mat-error *ngIf="
+      !vm.categoryForm.controls.stNameCh.pristine &&
+      vm.categoryForm.controls.stNameCh.hasError('hasChinese')
+    ">請填寫中文/數字</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <label class="col-3"><span style="color: red;">*</span>題目類別(英)</label>
+      <mat-form-field class="col-9" [formGroup]="this.vm.categoryForm">
+        <mat-label></mat-label>
+        <input
+        formControlName="stNameEn"
+          name="stNameEn"
+          type="text"
+          matInput
+          placeholder="請輸入題目類別(英)"
+        />
+        <mat-error *ngIf="
+        !vm.categoryForm.controls.stNameEn.pristine &&
+        vm.categoryForm.controls.stNameEn.hasError('required')
+      ">此為必填欄位</mat-error>
+        <mat-error *ngIf="
+        !vm.categoryForm.controls.stNameEn.pristine &&
+        vm.categoryForm.controls.stNameEn.hasError('maxlength')
+      ">長度不得超過200個字</mat-error>
+      <mat-error *ngIf="
+      !vm.categoryForm.controls.stNameEn.pristine &&
+      vm.categoryForm.controls.stNameEn.hasError('hasEnglish')
+    ">請填寫英文/數字</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center">
+    <button type="button" mat-raised-button color="primary" (click)="addEditSave()">儲存</button>
+    <button type="button" mat-raised-button color="primary" (click)="addEditCancel()">取消</button>
+  </div>
+</mat-card>

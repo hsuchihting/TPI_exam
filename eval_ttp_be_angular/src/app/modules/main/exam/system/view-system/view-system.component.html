@@ -1,0 +1,29 @@
+<!-- <p>view-system works!</p> -->
+<form [formGroup]="vm.viewSystemForm">
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-9" style="margin-left: 30px;">
+      <h1>版本<span style="margin-left: 60px;">{{vm.viewSystemId}}</span></h1>
+      <br>
+      <app-editor
+          formControlName="viewSystemContent"
+          #editor1
+          id="editor1"
+          [maxWordLimit]="2000"
+        ></app-editor>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</form>
+<div class="row">
+  <div class="col-12 text-center">
+    <button
+    color="primary"
+    mat-flat-button
+    type="button"
+    style="margin: 20px;"
+    (click)="backSystemHome()"
+    >
+    關閉
+    </button>
+  </div>
+</div>

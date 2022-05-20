@@ -1,0 +1,27 @@
+<app-header></app-header>
+<mat-drawer-container class="main-container" [hasBackdrop]="false">
+  <mat-drawer #drawer opened="true" [mode]="'side'"
+    ><app-sidenav></app-sidenav
+  ></mat-drawer>
+  <mat-drawer-content>
+    <main class="content">
+      <div class="container-fluid">
+        <div class="row justify-content-center contentRow">
+          <div class="col-12 section">
+            <app-breadcrumb></app-breadcrumb>
+            <div class="right_box"></div>
+          </div>
+          <div class="col-12">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>
+<ngx-spinner
+  type="ball-clip-rotate"
+  bdColor="rgba(109, 106, 106, 0.4)"
+  size="medium"
+  color="#2196f3"
+></ngx-spinner>

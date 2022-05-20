@@ -1,0 +1,117 @@
+<mat-card>
+  <form [formGroup]="vm.testForm">
+  <div class="row">
+    <div class="col-6">
+      <label class="col-3"><span style="color: red;">*</span>測驗說明名稱</label>
+        <mat-form-field class="col-9">
+          <mat-label></mat-label>
+          <input
+            formControlName="tdName"
+            name="roleFilter"
+            type="text"
+            matInput
+            placeholder="請輸入測驗說明名稱"
+          />
+          <mat-error *ngIf="vm.tdName?.invalid && vm.tdName?.touched || vm.tdName?.dirty">
+            <mat-error *ngIf="vm.tdName!.errors?.required">不可為空，請填入！</mat-error>
+            <mat-error *ngIf="vm.tdName!.errors?.maxlength">字數不可超過100字！</mat-error>
+          </mat-error>
+        </mat-form-field>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-6">
+        <label class="col-3"><span style="color: white">*</span>動態參數</label>
+        <a href="" class="link" (click)="insertContent($event, '${USER_NAME}')" style="margin-left: 15px">受測者姓名</a>
+        <a href="" class="link" (click)="insertContent($event, '${JOB_TITLE}')" style="margin-left: 15px">應徵職務別</a>
+        <a href="" class="link" (click)="insertContent($event, '${TB_COUNT}')" style="margin-left: 15px">題本試卷數</a>
+        <a href="" class="link" (click)="insertContent($event, '${EVAL_TIME}')" style="margin-left: 15px">測驗總時間</a>
+        <div class="col-9">
+        </div>
+      </div>
+      <div class="col-6" style="margin-top: -40px;">
+        <label class="col-3"><span style="color: red;">*</span>使用狀態</label>
+      <mat-radio-group class="col-9" formControlName="statusCode">
+      <mat-label></mat-label>
+      <mat-radio-button
+        value="Y"
+        class="col-4"
+        color="primary"
+        class="example-margin"
+        style="margin-right: 20px"
+      >啟用</mat-radio-button>
+      <mat-radio-button
+        value="N"
+        class="col-4"
+        color="primary"
+        class="example-margin"
+        style="margin-right: 20px"
+      >停用</mat-radio-button>
+      </mat-radio-group>
+        <div style="margin-top: 0.5rem;margin-left: -65px">
+          <a href="" class="link" (click)="insertContent($event, '${TB_CONTENT}')" style="margin-left: 40px">題本內容</a>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-left: 0px; margin-top: 18px;">
+      <div class="col-3">
+        <label><span style="color: red;">*</span>測驗說明內容</label>
+      </div>
+      <div class="col-9" style="margin-left: 5rem; margin-top: -40px">
+        <mat-tab-group style="margin-left: 3rem;">
+          <mat-tab label="內容（中）">
+            <ng-template matTabContent>
+              <app-editor
+                formControlName="contentCh"
+                #editor3
+                id="editor3"
+                [maxWordLimit]="20000"
+              ></app-editor>
+              <mat-error *ngIf="vm.contentCh?.invalid && vm.contentCh?.touched || vm.contentCh?.dirty">
+                <mat-error *ngIf="vm.contentCh!.errors?.required" >不可為空，請填入！</mat-error>
+                <mat-error *ngIf="vm.contentCh!.errors?.maxlength" >字數不可超過20000字！</mat-error>
+                <mat-error *ngIf="vm.contentCh!.errors?.matchLangNum">請輸入中/英文/數字</mat-error>
+                <mat-error *ngIf="vm.contentCh!.errors?.hasChinese">中文必填</mat-error>
+              </mat-error>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="內容（英）">
+            <ng-template matTabContent>
+              <app-editor
+                formControlName="contentEn"
+                #editor3
+                id="editor3"
+                [maxWordLimit]="20000"
+              ></app-editor>
+              <mat-error *ngIf="vm.contentEn?.invalid && vm.contentEn?.touched || vm.contentEn?.dirty">
+                <mat-error *ngIf="vm.contentEn!.errors?.maxlength" >字數不可超過20000字！</mat-error>
+                <mat-error *ngIf="vm.contentCh!.errors?.matchEngNum">請輸入英文/數字</mat-error>
+              </mat-error>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button
+      color="primary"
+      mat-flat-button
+      type="button"
+      style="margin: 20px;"
+      (click)="onAddEdit()"
+      >
+        儲存
+      </button>
+      <button
+      color="primary"
+      mat-flat-button
+      type="button"
+      (click)="vm.backTestHome()"
+      >
+        取消
+      </button>
+    </div>
+  </div>
+</mat-card>

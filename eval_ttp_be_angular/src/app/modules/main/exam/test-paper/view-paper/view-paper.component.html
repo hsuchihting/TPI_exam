@@ -1,0 +1,199 @@
+<mat-card>
+  <div class="row">
+    <div class="col-12">
+      <label class="col-1">
+        <span>試卷編號</span>
+      </label>
+      <span class="col-11">{{ vm.testId }}</span>
+    </div>
+
+    <div class="col-6">
+      <label class="col-3">
+        <span class="dot">*</span>
+        <span>題目類別</span>
+      </label>
+      <span class="col-3">{{ vm.testsTypeName }}</span>
+    </div>
+
+    <div class="col-6 d-flex">
+      <label class="col-4">
+        <span class="dot">*</span>
+        <span>施測時間</span>
+      </label>
+
+      <div class="col-3">
+        <mat-radio-group>
+          <mat-radio-button
+            [checked]="vm.testDTime"
+            value="{{ vm.testDTime }}"
+            disabled
+            color="primary"
+          >
+          </mat-radio-button>
+          <span>{{ vm.testDTime }}</span>
+          <span> 日 </span>
+        </mat-radio-group>
+      </div>
+
+      <div class="col-3">
+        <mat-radio-group>
+          <mat-radio-button
+            [checked]="vm.testHTime || vm.testMTime"
+            value="{{ vm.testHTime }}"
+            disabled
+            color="primary"
+          >
+          </mat-radio-button>
+          <span>{{ vm.testHTime }}</span>
+          <span> 時 </span>
+        </mat-radio-group>
+      </div>
+
+      <div class="col-3">
+        <mat-radio-group>
+          <span>{{ vm.testMTime }}</span>
+          <span> 分 </span>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <label class="col-3">
+        <span class="dot">*</span>
+        <span>試卷名稱</span>
+      </label>
+      <span class="col-3">{{ vm.testsName }}</span>
+    </div>
+
+    <div class="col-6">
+      <label class="col-4">
+        <span class="dot">*</span>
+        <span>施測時間倒數提醒</span>
+      </label>
+      <span class="col-2">{{ vm.remindTime }}分</span>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <label class="col-3">
+      <span>備註</span>
+    </label>
+    <span class="col-6">{{ vm.memo }}</span>
+  </div>
+
+  <div class="col-6">
+    <label class="col-3">
+      <span>最後更新人員</span>
+    </label>
+    <span class="col-1">{{ vm.updateUserName }}</span>
+    <span class="col-2">{{ vm.updateEmail }}</span>
+  </div>
+
+  <div class="col-6">
+    <label class="col-3">
+      <span>最後更新時間</span>
+    </label>
+    <span class="col-3">{{ vm.updateDatetime }}</span>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      routerLink="/main/exam/test-paper"
+    >
+      關閉
+    </button>
+  </div>
+</mat-card>
+
+<!-- table -->
+<mat-card style="margin-top: 40px">
+  <div
+    class="row"
+    *ngFor="let item of vm.viewTestsQuList; let itemIndex = index"
+    style="margin-bottom: 40px"
+  >
+    <div class="col-12">
+      <label class="col-2">
+        <span>題目類型{{ itemIndex + 1 }}</span>
+      </label>
+      <span class="col-10" *ngIf="item.testsQuType === 'C'; display: none"
+        >單選題</span
+      >
+      <span class="col-10" *ngIf="item.testsQuType === 'S'; display: none"
+        >複選題</span
+      >
+      <span class="col-10" *ngIf="item.testsQuType === 'SD'; display: none"
+        >簡答題</span
+      >
+      <span class="col-10" *ngIf="item.testsQuType === 'FU'; display: none"
+        >檔案上傳題</span
+      >
+    </div>
+
+    <div class="col-12">
+      <label class="col-2">
+        <span>題目{{ itemIndex + 1 }}</span>
+      </label>
+      <span class="col-10">{{ item.testsQuDesc }}</span>
+    </div>
+
+    <div class="col-12">
+      <label class="col-2">
+        <span>題目圖片{{ itemIndex + 1 }}</span>
+      </label>
+      <img
+        class="col-10"
+        [src]="item.testsQuImgDTO.url"
+        *ngIf="item.testsQuImgDTO != null; display"
+      />
+    </div>
+
+    <div
+      class="row col-12"
+      *ngFor="let option of item.viewTestsQuOptionsList; let j = index"
+    >
+      <div class="col-5">
+        <label class="col-3">
+          <span>答案{{ vm.answerTitle(j + 1) }}</span>
+        </label>
+        <span class="col-2">{{ option.testsQuOptionsDesc }}</span>
+      </div>
+
+      <div class="col-5">
+        <label class="col-3">
+          <span>上傳答案</span>
+        </label>
+        <img
+          class="col-10"
+          [src]="option.testsQuOptionsImg.url"
+          *ngIf="option.testsQuOptionsImg != null; display"
+        />
+      </div>
+
+      <div class="col-2">
+        <mat-radio-button
+          value="Y"
+          color="primary"
+          [checked]="option.isTestsQuAns === '0'"
+          disabled
+          *ngIf="item.testsQuType !== 'S'; display"
+        >
+        </mat-radio-button>
+        <mat-checkbox
+          value="Y"
+          color="primary"
+          [checked]="option.isTestsQuAns === '0'"
+          disabled
+          *ngIf="item.testsQuType !== 'C'; display"
+        >
+        </mat-checkbox>
+        <label>
+          <span>正解</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</mat-card>

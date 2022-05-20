@@ -1,0 +1,34 @@
+<app-logo></app-logo>
+<main class="content inner-bg">
+  <div class="container t-box">
+    <div class="row content-inner">
+      <div class="outter">
+        <div class="name-box">
+          <div class="name-t-title">
+            <span class="bg"></span>
+            <div class="txt" *ngIf="vm.isLogout === false">測驗完成</div>
+            <div class="txt" *ngIf="vm.isLogout === true">系統已登出</div>
+          </div>
+          <div class="page-ti-box page-ti"></div>
+        </div>
+        <div class="frame-back">
+          <div class="main-frame">
+            <div class="comp-box form-flow">
+              <div class="txt-completed" *ngIf="vm.isLogout === false">
+                謝謝您的填答，<br />昕力資訊已收到您的填答結果。
+              </div>
+              <div class="txt-completed" *ngIf="vm.isLogout === true">
+                閒置時間已超過10分鐘，<br />已由系統自動登出，繼續作答請重新登入。
+              </div>
+              <img
+                src="../../../../assets/images/bg-completed.png"
+                srcset="../../../../assets/images/bg-completed@2x.png 2x"
+                class="bg-completed"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

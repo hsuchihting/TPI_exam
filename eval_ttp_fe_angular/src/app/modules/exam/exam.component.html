@@ -1,0 +1,30 @@
+<div class="container t-box">
+  <div class="row content-inner">
+    <router-outlet></router-outlet>
+
+    <!-- 登入逾時 -->
+    <!-- <app-timeout *ngIf="timeOut"></app-timeout> -->
+
+    <!-- 五分鐘提醒 -->
+    <ng-container *ngIf="hurry" data-target="#hurrupin5">
+      <app-hurryup-modal
+        class="hurryUpModal fade modal-pop"
+        id="hurrupin5"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      ></app-hurryup-modal>
+    </ng-container>
+
+    <!-- 時間到 -->
+    <ng-container *ngIf="timesUp">
+      <app-timesup-modal
+        class="timesUpModal fade modal-pop"
+        id="timesup"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      ></app-timesup-modal>
+    </ng-container>
+  </div>
+</div>

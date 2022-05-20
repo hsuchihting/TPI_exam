@@ -1,0 +1,15 @@
+import { Injectable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+@Injectable()
+export class LoadingService {
+  constructor(private spinner: NgxSpinnerService) {}
+
+  show() {
+    this.spinner.show();
+  }
+
+  hide() {
+    this.spinner.hide();
+  }
+}

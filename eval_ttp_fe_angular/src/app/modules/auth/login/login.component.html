@@ -1,0 +1,133 @@
+<div class="login-bg">
+  <div class="front-img">
+    <div class="img-left"></div>
+    <div class="img-right"></div>
+    <div class="bg-purple"></div>
+  </div>
+  <div class="container">
+    <div class="content-inner login-box row">
+      <div class="logo mx-auto logo-w">
+        <img
+          src="../../../../assets/images/logo-ch@2x.png"
+          alt="TPI測評網"
+          class="img-fluid"
+        />
+      </div>
+
+      <form [formGroup]="vm.loginForm">
+        <div class="form-group input-group outline">
+          <input
+            formControlName="uuid"
+            type="text"
+            name="uuid"
+            class="form-control question"
+            id="uuid"
+            required
+            autocomplete="off"
+          />
+          <label for="uuid"><span>受測代碼(UUID)</span></label>
+          <!-- 此為錯誤訊息，若需顯示錯誤訊息請在class加“d-block" -->
+          <div
+            class="invalid-feedback d-block"
+            *ngIf="
+              !vm.loginForm.controls.uuid.pristine &&
+              vm.loginForm.controls.uuid.errors?.required
+            "
+          >
+            受測代碼不正確
+          </div>
+        </div>
+        <div class="form-group input-group outline">
+          <input
+            formControlName="email"
+            id="email"
+            type="email"
+            name="email"
+            class="form-control question"
+            autocomplete="off"
+          />
+          <label for="email"><span>受測者 Email</span></label>
+          <div
+            class="invalid-feedback d-block"
+            *ngIf="
+              !vm.loginForm.controls.email.pristine &&
+              vm.loginForm.controls.email.hasError('required')
+            "
+          >
+            請輸入受測者 Email
+          </div>
+          <div
+            class="invalid-feedback d-block"
+            *ngIf="
+              !vm.loginForm.controls.email.pristine &&
+              vm.loginForm.controls.email.hasError('pattern')
+            "
+          >
+            Email 格式不正確
+          </div>
+        </div>
+        <div class="form-group input-group outline mt-n4">
+          <label for="" class="col-sm-4 col-form-label d-inline">{{
+            "switch_language" | translate
+          }}</label>
+          <div
+            class="form-check d-flex justify-content-between"
+            style="width: 90%"
+          >
+            <div class="form-radio-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="lang"
+                id="lang-tc"
+                value="zh-tw"
+                [checked]="vm.isTw"
+                (click)="setLang('zh-tw')"
+              />
+              <label class="form-check-label" for="lang-tc"> 繁體中文 </label>
+            </div>
+            <div class="form-radio-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="lang"
+                id="lang-en"
+                value="en"
+                (click)="setLang('en')"
+                [checked]="!vm.isTw"
+              />
+              <label class="form-check-label" for="lang-en"> English </label>
+            </div>
+          </div>
+        </div>
+        <!-- modal -->
+        <div>
+          <app-finish-modal
+            class="modal fade modal-pop"
+            tabindex="-1"
+            id="failLogin"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+            [isFail] = "vm.isFail"
+          ></app-finish-modal>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary btn-width mt-20" (click)="login()">
+            <!-- <a href="/" class=""> -->
+            <span class="bg space-d"></span>
+            <div class="txt d-flex justify-content-center pr-1 ic-login">
+              登 入
+            </div>
+            <!-- </a> -->
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="d-block info-txt">
+      <span>登入有問題？請聯絡</span>
+      <span class="txt-highline d-inline-block"
+        >昕力資訊，電話：02-8751-1610</span
+      >
+    </div>
+  </div>
+</div>

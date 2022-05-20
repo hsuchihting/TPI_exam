@@ -1,0 +1,42 @@
+<header class="header">
+  <div class="container header-in">
+    <app-logo></app-logo>
+    <div class="timer-box-m">
+      <div class="timer">
+        <i class="icons-ic-stopwatch-white-s mr-2"></i>
+        224:10:30
+      </div>
+      <div class="timer-ar ml-4"></div>
+    </div>
+    <!--進度條-->
+    <div class="pb-box">
+      <div class="pb-left">
+        <i class="icons-ic-progressbar pb-flag"></i>
+        <div class="progress">
+          "
+          <div class="pb-curr-no-s">
+            <h6>{{ percent }} %</h6>
+          </div>
+          <div
+            class="progress-bar"
+            role="progressbar"
+            [style.width]="percent + '%'"
+            aria-valuenow="2"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+      <div class="pb-right">
+        <div class="pb-curr-no">
+          <h1>{{ currentPage }}</h1>
+        </div>
+        <div class="pb-txt">
+          /
+          <p class="ml-1 mr-1">{{ total }}</p>
+          頁
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

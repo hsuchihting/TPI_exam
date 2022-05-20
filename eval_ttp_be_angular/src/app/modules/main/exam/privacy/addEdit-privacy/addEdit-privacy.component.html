@@ -1,0 +1,82 @@
+<!-- <p>addEdit-privacy works!</p> -->
+<mat-card>
+  <form [formGroup]="vm.privacyForm">
+  <div class="row">
+    <div class="col-10">
+      <label class="col-3"><span style="color: white;">*</span>版本</label>
+      <mat-form-field class="col-9" style="margin-left: -50px">
+        <mat-label></mat-label>
+        <input
+          formControlName="ppId"
+          name="roleFilter"
+          type="text"
+          matInput
+        />
+      </mat-form-field>
+      <label class="col-3"><span style="color: white">*</span>動態參數</label>
+      <a href="" class="link" (click)="insertContent($event, '${USER_NAME}')" style="margin-left: -40px">受測者姓名</a>
+      <br>
+      <div class="col-9">
+      </div>
+      <div class="row" style="margin-top: 20px">
+        <label class="col-3" style="margin-left: 15px;"><span style="color: red;">*</span>內容</label>
+        <div class="col-9" style="margin-left: 8rem; margin-top: -40px">
+          <mat-tab-group style="margin-left: 2rem;">
+            <mat-tab label="內容（中）">
+              <ng-template matTabContent>
+                <app-editor
+                  formControlName="privacyContentCh"
+                  #editor3
+                  id="editor3"
+                  [maxWordLimit]="20000"
+                ></app-editor>
+                <mat-error *ngIf="vm.privacyContentCh?.invalid && vm.privacyContentCh?.touched || vm.privacyContentCh?.dirty">
+                  <mat-error *ngIf="vm.privacyContentCh!.errors?.required" >不可為空，請填入！</mat-error>
+                  <mat-error *ngIf="vm.privacyContentCh!.errors?.maxlength" >字數不可超過20000字！</mat-error>
+                  <mat-error *ngIf="vm.privacyContentCh!.errors?.matchLangNum">請輸入中/英文/數字</mat-error>
+                  <mat-error *ngIf="vm.privacyContentCh!.errors?.hasChinese" >中文必填！</mat-error>
+                </mat-error>
+              </ng-template>
+            </mat-tab>
+            <mat-tab label="內容（英）">
+              <ng-template matTabContent>
+                <app-editor
+                  formControlName="privacyContentEn"
+                  #editor3
+                  id="editor3"
+                  [maxWordLimit]="20000"
+                ></app-editor>
+                <mat-error *ngIf="vm.privacyContentEn?.invalid && vm.privacyContentEn?.touched || vm.privacyContentEn?.dirty">
+                  <mat-error *ngIf="vm.privacyContentEn!.errors?.matchEngNum">如有選填英文內容，請填入英文/數字！</mat-error>
+                </mat-error>
+              </ng-template>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  </form>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button
+      color="primary"
+      mat-flat-button
+      type="button"
+      style="margin: 20px;"
+      (click)="onAdd()"
+      >
+        儲存
+      </button>
+      <button
+      color="primary"
+      mat-flat-button
+      type="button"
+      (click)="vm.backSystemHome()"
+      >
+        取消
+      </button>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,43 @@
+<!-- <p>view-email works!</p> -->
+<div class="row" style="margin-top: 30px;">
+  <div class="col-9" style="margin-left: 30px;">
+    <form [formGroup]="vm.viewEmailForm">
+      <div class="row" style="margin-top: 30px;">
+        <div class="col-9">
+          <label class="col-3" style="margin-top: 20px; margin-left: -10px;">範本名稱</label>
+          <mat-form-field class="col-9">
+            <mat-label></mat-label>
+            <input
+              formControlName="viewEmailName"
+              name="roleFilter"
+              type="text"
+              matInput
+            />
+          </mat-form-field>
+          <br>
+          <app-editor
+            formControlName="viewEmailContent"
+            #editor2
+            id="editor2"
+            [maxWordLimit]="1000"
+          ></app-editor>
+        </div>
+        <div class="col-3"></div>
+      </div>
+    </form>
+  </div>
+  <div class="col-3"></div>
+</div>
+<div class="row">
+  <div class="col-12 text-center">
+    <button
+    color="primary"
+    mat-flat-button
+    type="button"
+    style="margin: 20px;"
+    (click)="backEmailHome()"
+    >
+      關閉
+    </button>
+  </div>
+</div>

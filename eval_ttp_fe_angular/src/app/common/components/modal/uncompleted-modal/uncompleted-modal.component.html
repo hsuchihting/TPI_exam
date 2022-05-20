@@ -1,0 +1,24 @@
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header popup-header-b"></div>
+    <div class="modal-body text-center">
+      <p>
+        提醒您，尚有題目未完成作答，<br />按「返回」繼續作答，若不需作答請按「送出」
+      </p>
+    </div>
+    <div class="modal-footer text-center justify-content-center frame-btn-box">
+      <button class="btn btn-secondary mr-3 closeModal" (click)="submit()">
+        <!-- <a href="#" class=""> -->
+        <span class="bg"></span>
+        <div class="txt">送出</div>
+        <!-- </a> -->
+      </button>
+      <button class="btn btn-primary" data-dismiss="modal" aria-label="Close" (click)="cancel()">
+        <!-- <a href="#" class="" > -->
+        <span class="bg"></span>
+        <div class="txt">返回</div>
+        <!-- </a> -->
+      </button>
+    </div>
+  </div>
+</div>

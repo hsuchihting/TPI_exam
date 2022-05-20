@@ -1,0 +1,212 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icons-breadcrumb {
+  background-image: url(../images/sprite.png);
+  background-position: -120px -21px;
+  width: 13px;
+  height: 13px;
+}
+.icons-btn-arrow-disable {
+  background-image: url(../images/sprite.png);
+  background-position: -41px 0px;
+  width: 28px;
+  height: 28px;
+}
+.icons-btn-arrow {
+  background-image: url(../images/sprite.png);
+  background-position: -70px 0px;
+  width: 28px;
+  height: 28px;
+}
+.icons-checkbox-checked {
+  background-image: url(../images/sprite.png);
+  background-position: -70px -29px;
+  width: 20px;
+  height: 20px;
+}
+.icons-checkbox-default {
+  background-image: url(../images/sprite.png);
+  background-position: -41px -29px;
+  width: 20px;
+  height: 20px;
+}
+.icons-checkbox-disabled-checked {
+  background-image: url(../images/sprite.png);
+  background-position: -53px -51px;
+  width: 20px;
+  height: 20px;
+}
+.icons-checkbox-disabled {
+  background-image: url(../images/sprite.png);
+  background-position: -74px -51px;
+  width: 20px;
+  height: 20px;
+}
+.icons-checkbox-error-checked {
+  background-image: url(../images/sprite.png);
+  background-position: -99px 0px;
+  width: 20px;
+  height: 20px;
+}
+.icons-checkbox-error {
+  background-image: url(../images/sprite.png);
+  background-position: -99px -21px;
+  width: 20px;
+  height: 20px;
+}
+.icons-ic-progressbar {
+  background-image: url(../images/sprite.png);
+  background-position: 0px 0px;
+  width: 40px;
+  height: 50px;
+}
+.icons-ic-stopwatch-white-s {
+  background-image: url(../images/sprite.png);
+  background-position: -29px -51px;
+  width: 23px;
+  height: 26px;
+}
+.icons-ic-stopwatch-white {
+  background-image: url(../images/sprite.png);
+  background-position: 0px -51px;
+  width: 28px;
+  height: 28px;
+}
+.icons-radio-checked {
+  background-image: url(../images/sprite.png);
+  background-position: -99px -42px;
+  width: 20px;
+  height: 20px;
+}
+.icons-radio-default {
+  background-image: url(../images/sprite.png);
+  background-position: 0px -80px;
+  width: 20px;
+  height: 20px;
+}
+.icons-radio-disabled-checked {
+  background-image: url(../images/sprite.png);
+  background-position: -21px -80px;
+  width: 20px;
+  height: 20px;
+}
+.icons-radio-disabled {
+  background-image: url(../images/sprite.png);
+  background-position: -42px -80px;
+  width: 20px;
+  height: 20px;
+}
+.icons-radio-error-checked {
+  background-image: url(../images/sprite.png);
+  background-position: -63px -80px;
+  width: 20px;
+  height: 20px;
+}
+.icons-radio-error {
+  background-image: url(../images/sprite.png);
+  background-position: -84px -80px;
+  width: 20px;
+  height: 20px;
+}
+.icons-select-default {
+  background-image: url(../images/sprite.png);
+  background-position: -120px 0px;
+  width: 20px;
+  height: 20px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+  .icons-breadcrumb {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-btn-arrow-disable {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-btn-arrow {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-checkbox-checked {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-checkbox-default {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-checkbox-disabled-checked {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-checkbox-disabled {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-checkbox-error-checked {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-checkbox-error {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-ic-progressbar {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-ic-stopwatch-white-s {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-ic-stopwatch-white {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-radio-checked {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-radio-default {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-radio-disabled-checked {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-radio-disabled {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-radio-error-checked {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-radio-error {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+  .icons-select-default {
+    background-image: url(../images/sprite@2x.png);
+    background-size: 140px 100px;
+  }
+}

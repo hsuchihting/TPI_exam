@@ -1,0 +1,25 @@
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header popup-header-a"></div>
+    <div class="modal-body text-center" *ngIf="vm.isTimeout === true">
+      <p>作答時間截止！<br />提醒您系統已經自動為您送出作答。</p>
+    </div>
+    <div class="modal-body text-center" *ngIf="vm.isTimeout === false">
+      <p>測驗有效期限截止！<br />提醒您系統已經自動為您送出作答。</p>
+    </div>
+    <div class="modal-footer text-center justify-content-center frame-btn-box">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="toThank()"
+      >
+        <!-- <a href="#" class="" > -->
+        <span class="bg"></span>
+        <div class="txt">測驗結束</div>
+        <!-- </a> -->
+      </button>
+    </div>
+  </div>
+</div>

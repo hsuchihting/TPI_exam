@@ -1,0 +1,39 @@
+<!-- <p>view-privacy works!</p> -->
+<form [formGroup]="vm.viewPrivacyForm">
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-9" style="margin-left: 30px;">
+      <h1>版本<span style="margin-left: 60px;">{{vm.viewPrivacyId}}</span></h1>
+      <br>
+      <app-editor
+        formControlName="viewPrivacyContent"
+        #editor3
+        id="editor3"
+        [maxWordLimit]="20000"
+      ></app-editor>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</form>
+<div class="row">
+  <div class="col-12 text-center">
+    <button
+    color="primary"
+    mat-flat-button
+    type="button"
+    style="margin: 20px;"
+    (click)="backPrivacyHome()"
+    >
+    關閉
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+

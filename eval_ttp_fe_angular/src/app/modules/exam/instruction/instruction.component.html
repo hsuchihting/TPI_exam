@@ -1,0 +1,79 @@
+<app-logo></app-logo>
+<main class="content inner-bg">
+  <div class="container t-box">
+    <div class="row content-inner">
+      <div class="outter">
+        <div class="name-box">
+          <div class="name-t-title">
+            <span class="bg"></span>
+            <div class="txt">測驗說明</div>
+          </div>
+          <div class="page-ti-box page-ti"></div>
+        </div>
+        <div class="frame-back">
+          <div class="main-frame">
+            <div class="task-info form-flow">
+              <div class="task-txt" [innerHTML]="vm.data?.tdContent"></div>
+              <div class="task-txt">
+                <p>
+                  請您於作答時間內填寫完畢。<br />
+                  作答期間關閉作答畫面恕不進行答案保留，作答時間亦不會重新計算。
+                </p>
+                <p>
+                  本份題目禁止任何形式外流。請您勿透過拍照、截圖或其他方式保存題本。
+                </p>
+              </div>
+
+              <div class="task-list">
+                <!-- 未測驗 -->
+                <ng-container *ngFor="let item of vm.data?.tbContentList">
+                  <!-- 未測驗 -->
+                  <ng-container
+                    *ngIf="item.isFinished === 'N'; else elseTemplate"
+                  >
+                    <div class="task-item">
+                      <div class="task-name">{{ item.testsTypeName }}</div>
+                      <div class="task-dot"></div>
+                      <div class="task-time">
+                        {{ item.testTime }}<span>分鐘</span>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <!-- 已測驗 -->
+                  <ng-template #elseTemplate>
+                    <div class="task-item-done">
+                      <div class="task-name">{{ item.testsTypeName }}</div>
+                      <div class="task-dot"></div>
+                      <div class="task-time"><span>已完成</span></div>
+                    </div>
+                  </ng-template>
+                </ng-container>
+              </div>
+            </div>
+            <!--BTNS-->
+            <div class="text-center">
+              <button class="btn btn-primary btn-w240" (click)="pop()">
+                <!-- <a href="#" class=""> -->
+                <span class="bg space-d"></span>
+                <div class="txt d-flex justify-content-center pr-1 ic-login">
+                  開始測驗
+                </div>
+                <!-- </a> -->
+              </button>
+            </div>
+
+            <!-- modal -->
+            <app-dotest-modal
+              class="modal fade modal-pop"
+              id="dotest"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+              [dotestFail]="vm.dotestFail"
+            ></app-dotest-modal>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

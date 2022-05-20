@@ -1,0 +1,845 @@
+<mat-card>
+  <form [formGroup]="vm.addPaper">
+    <div class="d-flex">
+      <!-- 題目類別 -->
+      <div class="col-5">
+        <label class="col-4">
+          <span class="dot">*</span>
+          <span>題目類別</span>
+        </label>
+        <mat-form-field class="col-6">
+          <mtx-select
+            [items]="vm.testTypeArr"
+            bindLabel="testsTypeName"
+            bindValue="testsType"
+            [(ngModel)]="vm.testsType"
+            [ngModelOptions]="{ standalone: true }"
+            (keydown.enter)="$event.preventDefault()"
+          >
+          </mtx-select>
+        </mat-form-field>
+      </div>
+      <!-- 施測時間 -->
+      <div class="textTime col-7">
+        <label class="col-3">
+          <span class="dot">*</span>
+          <span>施測時間</span>
+        </label>
+
+        <div class="time col-3">
+          <mat-radio-button
+            color="primary"
+            [checked]="vm.checked"
+            [value]="vm.testDayArr"
+            (change)="vm.timeValue($event)"
+          >
+            <mat-form-field>
+              <mtx-select
+                [items]="vm.testDayArr"
+                bindLabel="name"
+                bindValue="name"
+                [(ngModel)]="vm.dayTime"
+                [ngModelOptions]="{ standalone: true }"
+                (keydown.enter)="$event.preventDefault()"
+              >
+              </mtx-select>
+            </mat-form-field>
+            <span> 日 </span>
+          </mat-radio-button>
+        </div>
+
+        <div class="time col-3">
+          <mat-radio-button
+            color="primary"
+            [value]="vm.testHourArr"
+            (change)="vm.timeValue($event)"
+          >
+            <mat-form-field>
+              <mtx-select
+                [items]="vm.testHourArr"
+                bindLabel="name"
+                bindValue="name"
+                [(ngModel)]="vm.hourTime"
+                [ngModelOptions]="{ standalone: true }"
+                (keydown.enter)="$event.preventDefault()"
+              >
+              </mtx-select>
+            </mat-form-field>
+            <span> 時 </span>
+          </mat-radio-button>
+
+          <mat-form-field>
+            <mtx-select
+              [items]="vm.testMinsArr"
+              bindLabel="name"
+              bindValue="name"
+              [(ngModel)]="vm.minTime"
+              [ngModelOptions]="{ standalone: true }"
+              (keydown.enter)="$event.preventDefault()"
+            >
+            </mtx-select>
+          </mat-form-field>
+          <span> 分 </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <!-- 試卷名稱 -->
+      <div class="testTitle col-5">
+        <label class="col-4">
+          <span class="dot">*</span>
+          <span>試卷名稱</span>
+        </label>
+        <mat-form-field class="col-7">
+          <textarea
+            name="testsName"
+            matInput
+            formControlName="testsName"
+          ></textarea>
+          <mat-error *ngIf="vm.addPaper.controls.testsName.hasError('required')"
+            >不可為空，請填入！</mat-error
+          >
+          <mat-error
+            *ngIf="vm.addPaper.controls.testsName.hasError('maxlength')"
+            >字數不可超過 100 字！</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- 施測時間倒數提醒 -->
+      <div class="remindTime col-7">
+        <label class="col-4">
+          <span class="dot">*</span>
+          <span>施測時間倒數提醒</span>
+        </label>
+        <mat-form-field class="col-8">
+          <mtx-select
+            [items]="vm.remindTimeArr"
+            bindLabel="name"
+            bindValue="name"
+            formControlName="remindTime"
+            (keydown.enter)="$event.preventDefault()"
+          >
+          </mtx-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="memo d-flex">
+      <div class="col-12">
+        <label class="col-2">
+          <span>備註</span>
+        </label>
+        <mat-form-field class="col-9">
+          <textarea matInput name="memo" formControlName="memo"></textarea>
+          <mat-error *ngIf="vm.addPaper.controls.memo.hasError('maxlength')"
+            >字數不可超過 1000 字！</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <div class="btnGroup">
+    <button type="button" mat-raised-button (click)="saveAllForm()">
+      儲存
+    </button>
+    <button type="button" mat-raised-button (click)="cancel()">取消</button>
+  </div>
+</mat-card>
+
+<!-- 新增題目卡片 -->
+<section>
+  <mat-card>
+    <form [formGroup]="vm.addPaperItem">
+      <div
+        formArrayName="papers"
+        *ngFor="
+          let item of $any(vm.addPaperItem.get('papers')).controls;
+          let i = index;
+          trackBy: trackFn
+        "
+      >
+        <div [formGroupName]="i">
+          <!-- 題目類型 -->
+          <div class="col-12">
+            <label class="col-2">
+              <span class="dot">*</span>
+              <span>題目類型 {{ i + 1 }}</span>
+            </label>
+            <mat-form-field class="col-5">
+              <mtx-select
+                [items]="vm.examTypeArr"
+                bindLabel="name"
+                bindValue="type"
+                (keydown.enter)="$event.preventDefault()"
+                formControlName="quType"
+              >
+              </mtx-select>
+            </mat-form-field>
+          </div>
+          <div [ngSwitch]="item.get('quType')?.value">
+            <!-- 單選題 -->
+            <div *ngSwitchCase="'C'">
+              <!-- 題目 -->
+              <div class="col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-8">
+                  <textarea
+                    name="test"
+                    formControlName="test"
+                    matInput
+                  ></textarea>
+
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請輸入！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('maxLength')">
+                    字數不可超過 1000 字！</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <!-- 題目圖片 -->
+              <div class="testPic col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目圖片 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-4">
+                  <input
+                    type="text"
+                    matInput
+                    [value]="item.controls.testPic.value?.name"
+                    readonly
+                  />
+                  <app-file-upload
+                    #fileUpload
+                    (updateError)="updateError($event, i)"
+                    (change)="onFileChange($event, i)"
+                  ></app-file-upload>
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請上傳！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('mb')"
+                    >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('size')"
+                    >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                  >
+                </mat-form-field>
+
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  (click)="fileUpload.inputClick()"
+                >
+                  瀏覽
+                </button>
+                <app-question-tip></app-question-tip>
+              </div>
+
+              <!-- 答案群組 -->
+              <mat-radio-group>
+                <div
+                  class="answerGroup col-12"
+                  formArrayName="answer"
+                  *ngFor="
+                    let itemChild of $any(vm.paperControl.at(i).get('answer'))
+                      .controls;
+                    let j = index;
+                    trackBy: trackFn
+                  "
+                >
+                  <label class="col-2">
+                    <span class="dot">*</span>
+                    <span>答案 {{ answerTitle(j + 1) }}</span>
+                  </label>
+                  <div [formGroupName]="j">
+                    <!-- 答案 -->
+                    <mat-form-field class="col-3">
+                      <textarea
+                        name="answer"
+                        matInput
+                        [formControl]="itemChild.controls.answer"
+                      ></textarea>
+                      <mat-error
+                        *ngIf="
+                          itemChild.controls.answer.hasError(
+                            'bothWithoutContent'
+                          ) &&
+                          itemChild.controls.answerUpload.hasError(
+                            'bothWithoutContent'
+                          )
+                        "
+                        >輸入答案或上傳答案圖片(二擇一)，請輸入！</mat-error
+                      >
+                      <mat-error
+                        *ngIf="itemChild.controls.answer.hasError('maxlength')"
+                        >字數不可超過 100 字！</mat-error
+                      >
+                    </mat-form-field>
+
+                    <!-- 上傳答案 -->
+                    <label class="col-2">
+                      <span class="dot">*</span>
+                      <span>上傳答案 {{ answerTitle(j + 1) }}</span>
+                    </label>
+                    <mat-form-field class="col-2">
+                      <input
+                        type="text"
+                        matInput
+                        [value]="itemChild.controls.answerUpload.value?.name"
+                        readonly
+                      />
+                      <mat-error
+                        *ngIf="
+                          itemChild.controls.answer.hasError(
+                            'bothWithoutContent'
+                          ) &&
+                          itemChild.controls.answerUpload.hasError(
+                            'bothWithoutContent'
+                          )
+                        "
+                        >輸入答案或上傳答案圖片(二擇一)，請上傳！</mat-error
+                      >
+                      <mat-error
+                        *ngIf="itemChild.controls.answerUpload.hasError('mb')"
+                        >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                      >
+                      <mat-error
+                        *ngIf="itemChild.controls.answerUpload.hasError('size')"
+                        >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                      >
+                    </mat-form-field>
+
+                    <app-file-upload
+                      #fileUpload
+                      (updateError)="updateError($event, i)"
+                      (change)="vm.uploadAns($event, i, j)"
+                    ></app-file-upload>
+                    <button
+                      type="button"
+                      mat-raised-button
+                      color="primary"
+                      (click)="fileUpload.inputClick()"
+                    >
+                      瀏覽
+                    </button>
+
+                    <mat-radio-button
+                      color="primary"
+                      labelPosition="after"
+                      [value]="j"
+                      (change)="vm.radioChange($event, i)"
+                      >正解</mat-radio-button
+                    >
+
+                    <a href="javascript:void(0)" (click)="add(i)">
+                      <span class="material-icons"> control_point </span>
+                    </a>
+
+                    <a
+                      *ngIf="j != 0"
+                      href="javascript:void(0)"
+                      (click)="del(i, j)"
+                    >
+                      <span class="material-icons">
+                        remove_circle_outline
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </mat-radio-group>
+
+              <app-answer-tip></app-answer-tip>
+              <mat-error
+                class="invalid-feedback radioConfirmError"
+                role="alert"
+                *ngIf="
+                  vm.answerLen(
+                    $any(vm.paperControl.at(i).get('answer')).controls
+                  )
+                "
+                >應選 1 項正解，請選取！</mat-error
+              >
+
+              <mat-error
+                class="invalid-feedback radioConfirmError"
+                role="alert"
+                *ngIf="
+                  $any(vm.paperControl.at(i).get('answer')).controls.length <= 1
+                "
+                >若題目類型為【單選題】- 至少新增 2 項答案，請新增！</mat-error
+              >
+            </div>
+            <!-- 複選題 -->
+            <div *ngSwitchCase="'S'">
+              <!-- 題目 -->
+              <div class="col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-8">
+                  <textarea
+                    name="test"
+                    formControlName="test"
+                    matInput
+                  ></textarea>
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請輸入！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('maxlength')">
+                    字數不可超過 1000 字！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('size')"
+                    >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('mb')"
+                    >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <!-- 題目圖片 -->
+              <div class="testPic col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目圖片 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-3">
+                  <input
+                    type="text"
+                    matInput
+                    [value]="item.controls.testPic.value?.name"
+                    readonly
+                  />
+                  <app-file-upload
+                    #fileUpload
+                    (updateError)="updateError($event, i)"
+                    (change)="onFileChange($event, i)"
+                  ></app-file-upload>
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請上傳！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('mb')"
+                    >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('size')"
+                    >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                  >
+                </mat-form-field>
+
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  (click)="fileUpload.inputClick()"
+                >
+                  瀏覽
+                </button>
+                <app-question-tip></app-question-tip>
+              </div>
+              <!-- 答案群組 -->
+              <div
+                class="answerGroup col-12"
+                formArrayName="answer"
+                *ngFor="
+                  let itemChild of $any(vm.paperControl.at(i).get('answer'))
+                    .controls;
+                  let j = index;
+                  trackBy: trackFn
+                "
+              >
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>答案 {{ answerTitle(j + 1) }}</span>
+                </label>
+                <div [formGroupName]="j">
+                  <!-- 答案 -->
+                  <mat-form-field class="col-3">
+                    <textarea
+                      name="answer"
+                      matInput
+                      formControlName="answer"
+                    ></textarea>
+                    <mat-error
+                      *ngIf="
+                        itemChild.controls.answer.hasError(
+                          'bothWithoutContent'
+                        ) &&
+                        itemChild.controls.answerUpload.hasError(
+                          'bothWithoutContent'
+                        )
+                      "
+                      >輸入答案或上傳答案圖片(二擇一)，請輸入！</mat-error
+                    >
+                    <mat-error
+                      *ngIf="itemChild.controls.answer.hasError('maxlength')"
+                      >字數不可超過 100 字！</mat-error
+                    >
+                  </mat-form-field>
+
+                  <!-- 上傳答案 -->
+                  <label class="col-2">
+                    <span class="dot">*</span>
+                    <span>上傳答案 {{ answerTitle(j + 1) }}</span>
+                  </label>
+                  <mat-form-field class="col-3">
+                    <input
+                      type="text"
+                      matInput
+                      [value]="itemChild.controls.answerUpload.value?.name"
+                      readonly
+                    />
+                    <mat-error
+                      *ngIf="
+                        itemChild.controls.answer.hasError(
+                          'bothWithoutContent'
+                        ) &&
+                        itemChild.controls.answerUpload.hasError(
+                          'bothWithoutContent'
+                        )
+                      "
+                      >輸入答案或上傳答案圖片(二擇一)，請上傳！</mat-error
+                    >
+                    <mat-error
+                      *ngIf="itemChild.controls.answerUpload.hasError('mb')"
+                      >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                    >
+                    <mat-error
+                      *ngIf="itemChild.controls.answerUpload.hasError('size')"
+                      >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                    >
+                  </mat-form-field>
+
+                  <app-file-upload
+                    #fileUpload
+                    (updateError)="updateError($event, i)"
+                    (change)="vm.uploadAns($event, i, j)"
+                  ></app-file-upload>
+                  <button
+                    type="button"
+                    mat-raised-button
+                    color="primary"
+                    (click)="fileUpload.inputClick()"
+                  >
+                    瀏覽
+                  </button>
+
+                  <label>
+                    <label>
+                      <mat-checkbox
+                        color="primary"
+                        (change)="vm.checkboxChange($event, i, j)"
+                        >正解</mat-checkbox
+                      >
+                    </label>
+                  </label>
+
+                  <a href="javascript:void(0)" (click)="add(i)">
+                    <span class="material-icons"> control_point </span>
+                  </a>
+
+                  <a
+                    *ngIf="j != 0"
+                    href="javascript:void(0)"
+                    (click)="del(i, j)"
+                  >
+                    <span class="material-icons"> remove_circle_outline </span>
+                  </a>
+                </div>
+              </div>
+              <app-answer-tip></app-answer-tip>
+
+              <mat-error
+                class="invalid-feedback radioConfirmError"
+                role="alert"
+                *ngIf="
+                  vm.answerLen(
+                    $any(vm.paperControl.at(i).get('answer')).controls
+                  )
+                "
+                >應選 1 項正解，請選取！</mat-error
+              >
+              <mat-error
+                class="invalid-feedback radioConfirmError"
+                role="alert"
+                *ngIf="
+                  $any(vm.paperControl.at(i).get('answer')).controls.length <= 1
+                "
+                >若題目類型為【複選題】- 至少新增 2 項答案，請新增！</mat-error
+              >
+            </div>
+            <!-- 簡答題 -->
+            <div *ngSwitchCase="'SD'">
+              <!-- 題目 -->
+              <div class="col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-8">
+                  <textarea
+                    name="test"
+                    formControlName="test"
+                    matInput
+                  ></textarea>
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請輸入！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('maxlength')">
+                    字數不可超過 1000 字！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('size')"
+                    >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('mb')"
+                    >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <!-- 題目圖片 -->
+              <div class="testPic col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目圖片 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-3">
+                  <input
+                    type="text"
+                    matInput
+                    [value]="item.controls.testPic.value?.name"
+                    readonly
+                  />
+                  <app-file-upload
+                    #fileUpload
+                    (updateError)="updateError($event, i)"
+                    (change)="onFileChange($event, i)"
+                  ></app-file-upload>
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請輸入！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('mb')"
+                    >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('size')"
+                    >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                  >
+                </mat-form-field>
+
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  (click)="fileUpload.inputClick()"
+                >
+                  瀏覽
+                </button>
+                <app-question-tip></app-question-tip>
+              </div>
+            </div>
+            <!-- 檔案上傳題 -->
+            <div *ngSwitchCase="'FU'">
+              <!-- 題目 -->
+              <div class="col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-8">
+                  <textarea
+                    name="test"
+                    formControlName="test"
+                    matInput
+                  ></textarea>
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請輸入！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('maxlength')">
+                    字數不可超過 1000 字！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('size')"
+                    >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('mb')"
+                    >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <!-- 題目圖片 -->
+              <div class="testPic col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目圖片 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-3">
+                  <input
+                    type="text"
+                    matInput
+                    [value]="item.controls.testPic.value?.name"
+                    readonly
+                  />
+                  <app-file-upload
+                    #fileUpload
+                    (updateError)="updateError($event, i)"
+                    (change)="onFileChange($event, i)"
+                  ></app-file-upload>
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請輸入！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('mb')"
+                    >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('size')"
+                    >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                  >
+                </mat-form-field>
+
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  (click)="fileUpload.inputClick()"
+                >
+                  瀏覽
+                </button>
+                <app-question-tip></app-question-tip>
+              </div>
+            </div>
+            <div *ngSwitchDefault>
+              <!-- 題目 -->
+              <div class="col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-8">
+                  <textarea
+                    name="test"
+                    formControlName="test"
+                    matInput
+                  ></textarea>
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請輸入！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('maxlength')">
+                    字數不可超過 1000 字！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('size')"
+                    >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.test.hasError('mb')"
+                    >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <!-- 題目圖片 -->
+              <div class="testPic col-12">
+                <label class="col-2">
+                  <span class="dot">*</span>
+                  <span>題目圖片 {{ i + 1 }}</span>
+                </label>
+                <mat-form-field class="col-3">
+                  <input
+                    type="text"
+                    matInput
+                    [value]="item.controls.testPic.value?.name"
+                    readonly
+                  />
+                  <app-file-upload
+                    #fileUpload
+                    (updateError)="updateError($event, i)"
+                    (change)="onFileChange($event, i)"
+                  ></app-file-upload>
+                  <mat-error
+                    *ngIf="
+                      item.controls.test.hasError('bothWithoutContent') &&
+                      item.controls.testPic.hasError('bothWithoutContent')
+                    "
+                    >輸入題目或上傳題目圖片(至少選擇一項)，請輸入！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('mb')"
+                    >圖片大小限制 2MB (含)以內，請確認！</mat-error
+                  >
+                  <mat-error *ngIf="item.controls.testPic.hasError('size')"
+                    >圖片尺寸須為 800*800 以內，請確認！</mat-error
+                  >
+                </mat-form-field>
+
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  (click)="fileUpload.inputClick()"
+                >
+                  瀏覽
+                </button>
+                <app-question-tip></app-question-tip>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="deleteTest"
+          type="button"
+          mat-raised-button
+          *ngIf="i != 0"
+          (click)="delTestPaper(i)"
+        >
+          <span class="material-icons"> delete </span>
+        </button>
+      </div>
+
+      <button
+        class="addTest"
+        type="button"
+        mat-raised-button
+        (click)="addTestPaper()"
+      >
+        <span class="addTxt"> 新增一題 </span>
+      </button>
+    </form>
+  </mat-card>
+</section>

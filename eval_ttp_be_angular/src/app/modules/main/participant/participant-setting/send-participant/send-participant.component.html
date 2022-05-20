@@ -1,0 +1,85 @@
+<div class="container">
+  <div
+    class="row align-items-end justify-content-between"
+    style="margin-top: 30px"
+  >
+    <div >
+      <label>寄送總次數:</label>
+      <label>{{ vm.sendNum }}</label>
+    </div>
+    <div >
+      <button
+        (click)="onClickExport()"
+        type="button"
+        mat-raised-button
+        color="primary"
+      >
+        匯出
+      </button>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 10px">
+  <table mat-table matSort [dataSource]="vm.dataSourceChild.data">
+    <ng-container matColumnDef="testerName">
+      <th mat-header-cell *matHeaderCellDef>受測者姓名</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.testerName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="testerEmail">
+      <th mat-header-cell *matHeaderCellDef>受測者Email</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.testerEmail }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="depName">
+      <th mat-header-cell *matHeaderCellDef>應徵部門</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.depTrueName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="testsGroupName">
+      <th mat-header-cell *matHeaderCellDef>題本名稱</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.testsGroupName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="notifyDate">
+      <th mat-header-cell *matHeaderCellDef>寄送時間</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.notifyDate }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="notifyIsSuccess">
+      <th mat-header-cell *matHeaderCellDef>寄送狀態</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.notifyName }}
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="vm.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: vm.displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    #paginator
+    [pageIndex]="vm.currentPage - 1"
+    [length]="vm.pageLength"
+    [pageSize]="vm.pageSize"
+    (page)="vm.changePage($event)"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
+
+<div class="btn_close row justify-content-center">
+  <div class="text-center">
+    <button
+      mat-flat-button
+      routerLink="/main/participant/participant-setting"
+      color="primary"
+      class="btb-cancel"
+    >
+      關閉
+    </button>
+  </div>
+</div>

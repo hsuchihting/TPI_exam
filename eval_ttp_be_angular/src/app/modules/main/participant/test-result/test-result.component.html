@@ -1,0 +1,239 @@
+<mat-card>
+  <form [formGroup]="vm.invalidForm" class="row">
+    <div class="col-6">
+      <label class="col-5">受測者姓名</label>
+      <mat-form-field class="col-5">
+        <mat-label></mat-label>
+        <input
+          name="roleFilter"
+          type="text"
+          matInput
+          placeholder="請輸入關鍵字"
+          formControlName="testerName"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+
+      <!-- <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [min]="vm.minDate" [max]="vm.maxDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field> -->
+
+      <mat-form-field class="col-12">
+        <mat-label class="col-5">受測截止日期</mat-label>
+        <mat-date-range-input class="col-12" [rangePicker]="picker" [min]="vm.minDate" [max]="vm.maxDate">
+          <input
+            (click)="picker.open()"
+            matStartDate
+            placeholder="Start date"
+            formControlName="testEndDateStart"
+          />
+          <input
+            (click)="picker.open()"
+            matEndDate
+            placeholder="End date"
+            formControlName="testEndDateEnd"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+      <label class="col-5">受測者Email</label>
+      <mat-form-field class="col-5">
+        <mat-label></mat-label>
+        <input
+          name="roleFilter"
+          type="email"
+          matInput
+          placeholder="請輸入關鍵字"
+          formControlName="testerEmail"
+        />
+        <mat-error
+          *ngIf="vm.invalidForm.controls.testerEmail.hasError('pattern')"
+          >受測者Email格式錯誤，請重新輸入</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+      <label class="col-4">應徵部門：</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.depList"
+          bindLabel="depName"
+          bindValue="depId"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="depId"
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+      <label class="col-4">應徵職務：</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.titleList"
+          bindLabel="titlePmName"
+          bindValue="titlePmSeq"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="titlePmSeq"
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+      <label class="col-4">題本名稱：</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.testsGroupList"
+          bindLabel="testsGroupName"
+          bindValue="testsGroupSeq"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="testsGroupSeq"
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+      <label class="col-4">測驗狀況：</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.testStatusData"
+          bindLabel="name"
+          bindValue="id"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="testStatus"
+        >
+        </mtx-select>
+        <!-- <mat-hint>請選擇角色</mat-hint> -->
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+      <label class="col-4">施測者：</label>
+      <mat-form-field class="col-6">
+        <mat-label></mat-label>
+        <mtx-select
+          [items]="vm.hrList"
+          bindLabel="empName"
+          bindValue="empId"
+          [multiple]="vm.multiple"
+          [required]="vm.required"
+          formControlName="hrId"
+        >
+        </mtx-select>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-12 text-center">
+      <button
+        mat-flat-button
+        (click)="search()"
+        color="primary"
+        class="pull-right"
+      >
+        查詢
+      </button>
+    </div>
+  </div>
+</mat-card>
+
+<div style="margin-top: 10px">
+  <table  mat-table matSort [dataSource]="vm.dataSourceChild">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>項次</th>
+      <td
+        mat-cell
+        *matCellDef="let element; let i = index"
+      >
+        {{ this.paginator.pageIndex * this.paginator.pageSize + i + 1 }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="testerName">
+      <th mat-header-cell *matHeaderCellDef>受測者姓名</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.testerName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="testerEmail">
+      <th mat-header-cell *matHeaderCellDef>受測者Email</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.testerEmail }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="testsGroupName">
+      <th mat-header-cell *matHeaderCellDef>題本名稱</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <button class="testsGroupNameLink"  color="primary" routerLink="test-result-child" (click)="onClickName(i)"  >
+          {{ element.testsGroupName }}
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="testStatus">
+      <th mat-header-cell *matHeaderCellDef>測驗狀態</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.testStatusName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="createUser">
+      <th mat-header-cell *matHeaderCellDef>施測者</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.createUserName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="testEndDate">
+      <th mat-header-cell *matHeaderCellDef>受測截止日期</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.testEndDate }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="departent">
+      <th mat-header-cell *matHeaderCellDef>應徵部門</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.departentName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="titleNameCh">
+      <th mat-header-cell *matHeaderCellDef>應徵職務</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ element.titleNameCh }}
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="vm.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: vm.displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    #paginator
+    [pageIndex]="vm.currentPage - 1"
+    [length]="vm.pageLength"
+    [pageSize]="vm.pageSize"
+    (page)="vm.changePage($event)"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

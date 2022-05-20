@@ -1,0 +1,46 @@
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header popup-header-b"></div>
+    <div class="modal-body text-center">
+      <h2>測驗有效時間少於施測所需時間，</h2>
+      <h2>是否要前往作答?</h2>
+      <br />
+      <p>若要作答，請按「前往作答」，</p>
+      <p>剩餘時間將以測驗有效時間為主；</p>
+      <p>若不作答，請按「取消」。</p>
+      <br />
+      <p>如有任何問題，請聯繫人資窗口。</p>
+    </div>
+    <ng-template *ngIf="dotestFail === 'testNotExist'">
+      <div class="modal-body text-center">
+        <p>查無資料</p>
+      </div>
+    </ng-template>
+    <ng-template *ngIf="dotestFail === 'finishTest'">
+      <div class="modal-body text-center">
+        <p>您已完成測驗，請勿重複登入</p>
+      </div>
+    </ng-template>
+    <ng-template *ngIf="dotestFail === 'expire'">
+      <div class="modal-body text-center">
+        <p>您已超過測驗有效期限，請聯繫人資窗口</p>
+      </div>
+    </ng-template>
+    <div
+      class="modal-footer text-center d-flex justify-content-center frame-btn-box"
+    >
+      <button class="btn btn-secondary mr-3 closeModal" (click)="submit()">
+        <!-- <a href="#" class=""> -->
+        <span class="bg"></span>
+        <div class="txt">前往作答</div>
+        <!-- </a> -->
+      </button>
+      <button class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+        <!-- <a href="#" class="" > -->
+        <span class="bg"></span>
+        <div class="txt" (click)="cancel()">取消</div>
+        <!-- </a> -->
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,328 @@
+<app-process></app-process>
+<main class="content inner-bg">
+  <div class="container t-box">
+    <!-- modal -->
+    <!-- 作答倒數5分鐘提醒 -->
+    <app-hurryup-modal
+      class="modal fade modal-pop"
+      id="hurrupin5"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    ></app-hurryup-modal>
+    <!-- 作答時間截止 -->
+    <app-timesup-modal
+      class="modal fade modal-pop"
+      tabindex="-1"
+      id="timeup"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      [isFinished]="vm.isFinished"
+    ></app-timesup-modal>
+    <div class="row content-inner">
+      <div class="outter">
+        <div class="name-box">
+          <div class="name-t-title">
+            <span class="bg"></span>
+            <div class="txt">{{ vm.title }}</div>
+          </div>
+          <div class="page-ti-box page-ti"></div>
+        </div>
+        <div
+          class="timer-box"
+          [class.timer-box-cu]="vm.isTimeStart && vm.total <= vm.reminderTime"
+        >
+          <div class="timer">
+            <i class="icons-ic-stopwatch-white mr-2"></i>
+            <!-- {{ vm.hour }}:{{ vm.min }}:{{ vm.sec }} -->
+            {{ vm.time?.hours }}:{{ vm.time?.minutes }}:{{ vm.time?.seconds }}
+          </div>
+          <div class="timer-ar ml-4"></div>
+        </div>
+        <div class="frame-task-back">
+          <div class="task-frame">
+            <!--內容開始-->
+            <mat-card>
+              <ng-container *ngFor="let item of vm.testArr | slice: vm.start:vm.end; let i = index;">
+                <ng-container [ngSwitch]="item.testsQuType">
+                  <!--單選題區塊-->
+                  <ng-container *ngSwitchCase="'C'">
+                    <h3 *ngIf="item.index === '1'">單選題</h3>
+                    <div class="task-exam">
+                      <div class="exam-ti">
+                        <div class="exam-box">
+                          <p class="mr-2">{{ item.index }}.</p>
+                          <div class="d-block">
+                            <!-- 此為錯誤訊息，若需顯示錯誤訊息請在class加“d-none" -->
+                            <p>
+                              <!-- 7+6-5*4/3%(2+1)結果為何？ -->
+                              {{ item.quDesc }}
+                                <span
+                                  class="error-txt"
+                                  *ngIf="
+                                   vm.requiredArr[vm.start+i]
+                                  "
+                                  >未作答!</span
+                                >
+                            </p>
+                            <!--圖形題所在，若非圖形題可在class加"d-none"或移除此div區塊-->
+                            <div class="img-container">
+                              <img
+                                src="{{ item.quImg }}"
+                                alt="圖形題一"
+                                class="exam-img"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ml-4">
+                        <div class="form-check form-check-inline ais">
+                          <mat-radio-group aria-labelledby="example-radio-group-label"
+                          class="example-radio-group"
+                          [(ngModel)]="vm.optionsSeqArr[vm.start+i]"
+                          (ngModelChange)="vm.formValid()"
+                          >
+                            <mat-radio-button
+                              class="example-radio-button"
+                              *ngFor="
+                                let answer of item.optionsList;
+                                let j = index
+                              "
+                              [value]="answer.optionsSeq"
+                              (change)="vm.radioChecked($event,i)"
+                              >{{ answer.optionsDesc }}
+                              <img
+                                src="{{ answer.optionsImg }}"
+                                alt="圖形題"
+                                class="exam-img"
+                              />
+                            </mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+
+                  <!--複選題區塊-->
+                  <ng-container *ngSwitchCase="'S'">
+                    <h3 *ngIf="item.index === '1'">複選題</h3>
+                    <div class="task-exam">
+                      <div class="exam-ti">
+                        <div class="exam-box">
+                          <p class="mr-2">{{ item.index }}.</p>
+                          <div class="d-block">
+                            <!-- 此為錯誤訊息，若需隱藏錯誤訊息請在class加“d-none" -->
+                            <p>
+                              <!-- 請選擇合法的敘述句（選擇2個） -->
+                              {{ item.quDesc }}
+
+                                <span
+                                  class="error-txt"
+                                  *ngIf="vm.requiredArr[vm.start+i]"
+                                  >未作答!</span
+                                >
+                            </p>
+                            <!--圖形題所在，若非圖形題可在class加"d-none"或移除此div區塊-->
+                            <div class="img-container d-none">
+                              <img
+                                src="{{ item.quImg }}"
+                                alt="圖形題"
+                                class="exam-img"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ml-4">
+                        <ul class="d-flex form-check form-check-inline ais">
+                          <li *ngFor="let answer of item.optionsList">
+                            <input
+                              class="form-check-input pt-1"
+                              type="checkbox"
+                              id="{{ answer.optionsSeq }}"
+                              value="{{ answer.optionsSeq }}"
+                              [(ngModel)]="answer.value"
+                              (ngModelChange)="vm.formValid()"
+                            />
+                            <img
+                              src="{{ answer.optionsImg }}"
+                              alt="圖形題"
+                              class="exam-img"
+                            />
+                            <label class="form-check-label">{{
+                              answer.optionsDesc
+                            }}</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </ng-container>
+
+                  <!--簡答題區塊-->
+                  <ng-container *ngSwitchCase="'SD'">
+                    <h3 *ngIf="item.index === '1'">簡答題</h3>
+                    <ng-container>
+                      <div class="task-exam">
+                        <div class="exam-ti">
+                          <div class="exam-box">
+                            <p class="mr-2">{{ item.index }}.</p>
+                            <div class="d-block">
+                              <!-- 此為錯誤訊息，若需隱藏錯誤訊息請在class加“d-none" -->
+                              <p>
+                                <!-- 在物件導向程式設計中，請問物件之間的互動方式是透過何種機制來進行？請以JAVA為例，舉例說明。 -->
+                                {{ item.quDesc }}
+                                  <span
+                                    class="error-txt"
+                                    *ngIf="
+                                    vm.requiredArr[vm.start+i]
+                                    "
+                                    >未作答!</span
+                                  >
+                                  <span
+                                  class="error-txt"
+                                  *ngIf="
+                                   vm.lengthError[vm.start+i]
+                                  "
+                                  >字數不可超過1000字，請確認!</span
+                                >
+                              </p>
+                              <!--圖形題所在，若非圖形題可在class加"d-none"或移除此div區塊-->
+                              <div class="img-container d-none">
+                                <img
+                                  src="{{ item.quImg }}"
+                                  alt="圖形題"
+                                  class="exam-img"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ml-4">
+                          <div class="form-group ais">
+                            <textarea
+                              class="form-control"
+                              placeholder="請輸入訊息"
+                              rows="2"
+                              [(ngModel)]="vm.shortAnswer[vm.start+i]"
+                              (ngModelChange)="vm.formValid()"
+                            ></textarea>
+                            <!-- <div class="invalid-feedback">錯誤提示訊息</div> -->
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+
+                  <!--檔案上傳區塊 -->
+                  <ng-container *ngSwitchCase="'FU'">
+                    <h3 *ngIf="item.index === '1'">檔案上傳題</h3>
+                    <div class="task-exam">
+                      <div class="exam-ti">
+                        <div class="exam-box">
+                          <p class="mr-2">{{ item.index }}.</p>
+                          <div>
+                            <!-- 此為錯誤訊息，若需顯示錯誤訊息請在class加“d-none" -->
+                            <p>
+                              <!-- 請依據題目內容進行程式碼編輯後上傳作答結果。 -->
+                              {{ item.quDesc }}
+                              <span class="error-txt" *ngIf="vm.requiredArr[vm.start+i]"
+                                >未作答!</span
+                              >
+                              <span class="error-txt" *ngIf="vm.sizeError[vm.start+i]"
+                              > 檔案大小限制10MB，請重新上傳!</span
+                            >
+                            </p>
+                            <!--圖形題所在，若非圖形題可在class加"d-none"或移除此div區塊-->
+                            <div class="img-container">
+                              <img
+                                src="{{ item.quImg }}"
+                                alt="圖形題一"
+                                class="exam-img"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ml-4">
+                        <div class="form-group ais">
+                          <div
+                            class="custom-file"
+                            (mousedown)="fileUpload.inputClick()"
+                          >
+                            <input
+                              type="text"
+                              class="custom-file-input"
+                              id="customFile"
+                              accept="image/png, image/jpeg, .pdf"
+                              [(ngModel)]="vm.fileArr[vm.start+i]"
+                              (ngModelChange)="vm.formValid()"
+                            />
+                            <label
+                              for="customFile"
+                              data-browse="選擇檔案"
+                              class="custom-file-label"
+                              placeholder="檔案上傳"
+                              >{{vm.fileArr[vm.start+i]}}</label
+                            >
+                            <app-file-upload
+                              #fileUpload
+                              (updateError)="vm.updateError($event)"
+                              (change)="vm.onFileChange($event,i)"
+                            ></app-file-upload>
+                          </div>
+                          <div class="form-text">
+                            檔案格式：限JPG/PNG/PDF
+                          </div>
+                          <div class="invalid-feedback">錯誤提示訊息</div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <div *ngSwitchDefault>測驗型別不正確</div>
+                </ng-container>
+              </ng-container>
+            </mat-card>
+            <!--BTNS-->
+            <div class="text-center frame-btn-box">
+              <button
+                *ngIf="vm.page !== 1"
+                class="btn btn-secondary mr-3"
+                (click)="vm.prev()"
+              >
+                <span class="bg"></span>
+                <div class="txt">上一頁</div>
+              </button>
+              <button
+                *ngIf="vm.page !== vm.totalPage"
+                type="button"
+                class="btn btn-primary"
+                (click)="vm.next()"
+              >
+                <span class="bg"></span>
+                <div class="txt">下一頁</div>
+              </button>
+              <button
+                *ngIf="vm.page === vm.totalPage"
+                type="button"
+                class="btn btn-primary"
+                (click)="vm.send()"
+              >
+                <span class="bg"></span>
+                <div class="txt">送出</div>
+              </button>
+            </div>
+            <!-- modal -->
+            <app-uncompleted-modal
+              class="modal fade modal-pop"
+              id="uncompleted"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            ></app-uncompleted-modal>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

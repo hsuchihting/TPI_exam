@@ -1,0 +1,114 @@
+<mat-card>
+    <form [formGroup]="vm.invalidForm">
+    <div class="row col-6" class="custom-control custom-checkbox">
+      <label class="col-2"><span class="highlight">*</span>角色名稱</label>
+      <mat-form-field class="col-4">
+        <mat-label></mat-label>
+        <input
+          name="roleName"
+          type="text"
+          matInput
+          placeholder="請輸入角色名稱"
+          formControlName="roleName"
+          />
+          <!-- [(ngModel)]="vm.roleFilter" -->
+        <mat-error
+          *ngIf="
+          !vm.invalidForm.controls.roleName.pristine &&
+            vm.invalidForm.controls.roleName.hasError('required')
+          "
+          id="roleName-help"
+          class="p-error"
+          >角色名稱不可為空請輸入</mat-error
+        >
+        <mat-error
+          *ngIf="
+          !vm.invalidForm.controls.roleName.pristine &&
+            vm.invalidForm.controls.roleName.hasError('maxlength')
+          "
+          id="roleName-help"
+          class="p-error"
+          >輸入字數不可超過30字</mat-error
+        >
+      </mat-form-field>
+    </div>
+    </form>
+</mat-card>
+
+<mat-card style="margin-top: 10px">
+
+  <table mat-table [dataSource]="vm.dataFunctionType">
+    <ng-container matColumnDef="authName">
+      <th mat-header-cell style="text-align: center" *matHeaderCellDef>功能</th>
+      <td mat-cell *matCellDef="let element">{{ element.authName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="operating">
+      <th
+        [appStyleWidth]="'350px'"
+        style="text-align: center"
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        權限
+      </th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <mat-checkbox
+          *ngFor="let item of element.function"
+          class="col-3"
+          type="checkbox"
+          mat-raised-checkbox
+          color="primary"
+          [(ngModel)]="item.value"
+          (change)="vm.checkEvent($event.checked, item.funcId, i)"
+        >
+          {{ item.funcName | slice: -2 }}
+        </mat-checkbox>
+      </td>
+      <!-- </div> -->
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="vm.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: vm.displayedColumns"></tr>
+  </table>
+
+  <mat-error
+    class="invalid-feedback"
+    role="alert"
+    style="display: flex; justify-content: center"
+    *ngIf="vm.required"
+    >未勾選權限</mat-error
+  >
+  <!-- [hidden]='vm.required' -->
+
+  <!-- <div class="invalid-feedback" *ngIf="vm.invalidForm.controls ['myCheckboxGroup'].errors &&
+    vm.invalidForm.controls ['myCheckboxGroup'].errors.requiredOneCheckboxToBeChecked">未勾選權限</div> -->
+  <!-- </form> -->
+</mat-card>
+
+<!-- <mat-error
+  style="display: flex; justify-content: center"
+  *ngIf="checked.control.length < 1"
+  id="checkbox-help"
+  class="p-error"
+  >未勾選權限</mat-error
+> -->
+
+<div style="display: flex; justify-content: center">
+  <button
+    type="button"
+    mat-raised-button
+    color="primary"
+    (click)="submit(vm.invalidForm)"
+  >
+    儲存
+  </button>
+  <button
+    type="button"
+    mat-raised-button
+    color="primary"
+    routerLink="/main/authorization/role"
+  >
+    取消
+  </button>
+</div>

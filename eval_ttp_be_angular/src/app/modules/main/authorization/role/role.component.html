@@ -1,0 +1,128 @@
+<mat-card>
+  <form [formGroup]="vm.invalidForm">
+    <div class="row">
+      <div class="col-6">
+        <label class="col-2">角色名稱</label>
+        <mat-form-field class="col-10">
+          <mat-label></mat-label>
+          <input
+            maxlength="30"
+            id="roleName"
+            name="roleName"
+            type="text"
+            formControlName="roleName"
+            pInputText
+            matInput
+            placeholder="請輸入關鍵字（模糊查詢）"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-6 d-flex align-items-center">
+        <button
+          mat-flat-button
+          (click)="search()"
+          color="primary"
+          class="pull-right"
+        >
+          查詢
+        </button>
+      </div>
+    </div>
+  </form>
+</mat-card>
+
+<div class="row">
+  <div class="col-12 text-right">
+    <button  #btn_role_add appCheckAuth [auth_btn]="btn_role_add" [auth_type]="'btn_role_add'" mat-flat-button color="primary" routerLink="add-role">
+      <mat-icon>add</mat-icon>新增角色
+    </button>
+  </div>
+</div>
+
+<div style="margin-top: 10px">
+  <table mat-table [dataSource]="vm.dataSourceChild">
+    <ng-container matColumnDef="roleName">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">
+        角色名稱
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.roleName }}</td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="editer">
+      <th mat-header-cell *matHeaderCellDef>最後異動者</th>
+      <td mat-cell *matCellDef="let element">{{ element.roleLastEdit }}</td>
+    </ng-container>
+    <ng-container matColumnDef="editDate">
+      <th mat-header-cell *matHeaderCellDef>最後異動日期</th>
+      <td mat-cell *matCellDef="let element">{{ element.roleLastEditDate }}</td>
+    </ng-container> -->
+    <ng-container matColumnDef="operating">
+      <th
+        [appStyleWidth]="'400px'"
+        style="text-align: center"
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        操作
+      </th>
+
+      <td
+        style="text-align: center"
+        mat-cell
+        *matCellDef="let element; let i = index"
+      >
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          routerLink="list-role"
+          (click)="vm.onClickList(i)"
+        >
+          角色成員
+        </button>
+
+        <!-- 非動態分頁取前頁值 (click)="
+            vm.onClickList(
+              this.paginator.pageIndex * this.paginator.pageSize + i
+            )
+          " -->
+        <button
+          #btn_role_setting
+          appCheckAuth
+          [auth_btn]="btn_role_setting"
+          [auth_type]="'btn_role_setting'"
+          type="button"
+          mat-raised-button
+          color="primary"
+          routerLink="set-role"
+          (click)="vm.onClickList(i)"
+        >
+          設定成員
+        </button>
+        <button
+          #btn_role_edit
+          appCheckAuth
+          [auth_btn]="btn_role_edit"
+          [auth_type]="'btn_role_edit'"
+          type="button"
+          mat-raised-button
+          color="primary"
+          routerLink="modify-role"
+          (click)="vm.onClickList(i)"
+        >
+          角色功能修改
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="vm.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: vm.displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    [pageIndex]="vm.currentPage - 1"
+    [length]="vm.pageLength"
+    [pageSize]="vm.pageSize"
+    (page)="vm.changePage($event)"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

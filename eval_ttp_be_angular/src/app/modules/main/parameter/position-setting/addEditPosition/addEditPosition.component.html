@@ -1,0 +1,58 @@
+<mat-card>
+  <div class="row">
+    <div class="col-6">
+      <label class="col-3"><span style="color: red;">*</span>職務別(中)</label>
+      <mat-form-field class="col-9" [formGroup]="this.vm.positionForm">
+        <mat-label></mat-label>
+        <input
+        formControlName="titleNameCh"
+          name="titleNameCh"
+          type="text"
+          matInput
+          placeholder="請輸入職務別(中)"
+        />
+        <mat-error *ngIf="
+        !this.vm.positionForm.controls.titleNameCh.pristine &&
+        this.vm.positionForm.controls.titleNameCh.hasError('required')
+      ">此為必填欄位</mat-error>
+        <mat-error *ngIf="
+        !vm.positionForm.controls.titleNameCh.pristine &&
+        vm.positionForm.controls.titleNameCh.hasError('maxlength')
+      ">長度不得超過200個字</mat-error>
+      <mat-error *ngIf="
+      !vm.positionForm.controls.titleNameCh.pristine &&
+      vm.positionForm.controls.titleNameCh.hasError('hasChinese')
+    ">請輸入中文/數字</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <label class="col-3"><span style="color: red;">*</span>職務別(英)</label>
+      <mat-form-field class="col-9" [formGroup]="this.vm.positionForm">
+        <mat-label></mat-label>
+        <input
+        formControlName="titleNameEn"
+          name="titleNameEn"
+          type="text"
+          matInput
+          placeholder="請輸入職務別(英)"
+        />
+        <mat-error *ngIf="
+        !this.vm.positionForm.controls.titleNameEn.pristine &&
+        this.vm.positionForm.controls.titleNameEn.hasError('required')
+      ">此為必填欄位</mat-error>
+        <mat-error *ngIf="
+        !vm.positionForm.controls.titleNameEn.pristine &&
+        vm.positionForm.controls.titleNameEn.hasError('maxlength')
+      ">長度不得超過200個字</mat-error>
+      <mat-error *ngIf="
+        !vm.positionForm.controls.titleNameEn.pristine &&
+        vm.positionForm.controls.titleNameEn.hasError('hasEnglish')
+      ">請輸入英文/數字</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center">
+    <button type="button" mat-raised-button color="primary" (click)="addEditSave()">儲存</button>
+    <button type="button" mat-raised-button color="primary" (click)="addEditCancel()">取消</button>
+  </div>
+</mat-card>

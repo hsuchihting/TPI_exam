@@ -1,0 +1,198 @@
+{
+  "roles": [
+    {
+      "roleName": "HR主管",
+      "editer": "Kenny",
+      "editDate": "2012/03/01"
+    },
+    {
+      "roleName": "HR 2",
+      "editer": "Jimmy",
+      "editDate": "2012/03/02"
+    },
+    {
+      "roleName": "HR 3",
+      "editer": "Kenny",
+      "editDate": "2012/03/03"
+    },
+    {
+      "roleName": "HR 4",
+      "editer": "Lucy",
+      "editDate": "2012/03/04"
+    },
+    {
+      "roleName": "HR 5",
+      "editer": "Kenny",
+      "editDate": "2012/03/05"
+    },
+    {
+      "roleName": "HR 5",
+      "editer": "Jimmy",
+      "editDate": "2012/03/06"
+    },
+    {
+      "roleName": "HR 7",
+      "editer": "Lucy",
+      "editDate": "2012/03/07"
+    },
+    {
+      "roleName": "HR 8",
+      "editer": "Kenny",
+      "editDate": "2012/03/08"
+    },
+    {
+      "roleName": "HR 9",
+      "editer": "Lucy",
+      "editDate": "2012/03/09"
+    },
+    {
+      "roleName": "HR 10",
+      "editer": "Kenny",
+      "editDate": "2012/03/10"
+    },
+    {
+      "roleName": "HR 11",
+      "editer": "Lucy",
+      "editDate": "2012/03/11"
+    },
+    {
+      "roleName": "HR 12",
+      "editer": "Kenny",
+      "editDate": "2012/03/12"
+    },
+    {
+      "roleName": "Admin 1",
+      "editer": "Lucy",
+      "editDate": "2012/03/01"
+    },
+    {
+      "roleName": "Admin 2",
+      "editer": "Kenny",
+      "editDate": "2012/03/02"
+    },
+    {
+      "id": 1616514639913
+    },
+    {
+      "id": 1616514704188
+    },
+    {
+      "id": 1616514770217
+    },
+    {
+      "id": 1616515224544
+    },
+    {
+      "id": 1616519431318
+    },
+    {
+      "id": 1616547226243
+    },
+    {
+      "roleName": "HR 1",
+      "id": 1616547359455
+    },
+    {
+      "id": 1616567350970
+    },
+    {
+      "id": 1616567360557
+    }
+  ],
+  "addRoles": [
+    {
+      "authName": "角色設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "Email範本設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "系統說明設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "隱私權政策設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "試卷設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "題本設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "受測者設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "測驗結果查詢",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "題目類別設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "職務別設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    },
+    {
+      "authName": "就業狀況設定",
+      "add": false,
+      "edit": false,
+      "delete": false,
+      "view": false
+    }
+  ],
+  "listRoles": [
+    {
+      "department": "營運管理處",
+      "name": "Stella Lu",
+      "account": "stella.lu@tpisoftware.com"
+    },
+    {
+      "department": "營運管理處",
+      "name": "Jenny Lu",
+      "account": "jenny.lu@tpisoftware.com"
+    },
+    {
+      "department": "營運管理處",
+      "name": "Mina Ya",
+      "account": "mina.ya@tpisoftware.com"
+    }
+  ]
+}

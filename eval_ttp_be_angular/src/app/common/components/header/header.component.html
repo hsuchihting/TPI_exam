@@ -1,0 +1,24 @@
+<mat-toolbar class="main-header" color="primary">
+  <button mat-icon-button (click)="open()" id="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a class="logo-title" mat-button routerLink="/">
+    <img
+      class="logo-icon"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAA2CAYAAACP8mT1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALoSURBVHhe7Zm9axRBGIdv9zYhQYso6oGkUASFREURiZY2goWIKFiokCL/g5WCNtYWloKFVinEDxQErQUhKoIGFRFECF5MTCAYzN6ez7gvFub2+/YyG94Hfrwzs/Puzv5udmY3qSmKoiiKoiiKoiiKopSCIzEzQRBMOI5zQaprSrvdZjjBfc/zbkiTPTC4Pgb3mrimMIZZwjhxKzH3D58WV2KlwJwpzNnNzN6Gbruu2yS25XBpVMosTJrGpOF6vX4Igz5iUCCHekIlzMKgJTSBQSPomzT3HOvNwiQzg/Zj0q20jxo5/czCBhpGg9JcGKvN4qZfYtAY+ixNkdDXw5gz6BHlGXKMvlKebbVaN42B0jU3uXYQLmzyrhPPhy2RbGHAA1LOBOf+RO5h9FOaIsGgMcJd+u4KW1bD+U4xOx9ItbcYw1B/goa4kSYxE+Qso71yqVjodw75khoJfY5Jir0wSLODZYKca5IeC/0GJSUW+j0n2L+ZZTWL9WWesEnSY+Hcl8KsznDc8JRin6QUwjq3WXeeoHmpJnEPI1ak/A/afEz6QPEs69RxzreqTx5K/0Rg0NMMdo9UE2FmXeQb745UE+H8I4RxtBOTlrnWK8rPMOmNOV4pjFncRCroa9gnqdZh22NoPl9mwmL34YcYRQ/5XXKtYbaZZd7QW2Gxu/B4XyVMIfMulmv5sX87LQAzyGEmnUBzrGFXWM8KvcWvO7MwaADtwKDLaAmDHqNUryJJWLUbcpM+ocEsmAtboqGvizZQHELb0Sj1k1zrKGqYPp2gz3uOH0C/pckejFkMMBX0XUGbJTUW+k2ixM+c/yHnHSHX41jlx9DMoLqUe8K6XuC7jZqVAevM4tEq5T2rG9hmltmpFqRsHaWbxc7zQ4od+btF8QGMXlA9Hbam4rvErCyiXP8VKv09CxM2ooMUo671C33h3aoZVtPBOc1fYo9INRW+7zue571N8x6nKIqiKIqiKIqiKEoharU/n5J6+10/bJwAAAAASUVORK5CYII="
+      alt="tp"
+    />
+    <span>昕力 ｜ 測評網管理平台</span>
+  </a>
+  <span class="toolbar-seprator"></span>
+  <span>{{ empName }}</span>
+  <button
+    class="logout-icon"
+    matTooltip="登出"
+    (click)="logOut()"
+    [matTooltipPosition]="'below'"
+    mat-icon-button
+  >
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>

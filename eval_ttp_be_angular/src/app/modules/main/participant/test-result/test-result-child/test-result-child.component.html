@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-6">
+    <label class="txt_margin">題本名稱</label>
+    <label >{{vm.getTestsGroupName}}</label>
+  </div>
+  <div class="col-6">
+    <label class="txt_margin">受測者名稱</label>
+    <label >{{vm.getTesterName}}</label>
+  </div>
+</div>
+
+
+<div style="margin-top: 10px">
+  <table mat-table matSort [dataSource]="vm.dataSourceChild">
+    <ng-container matColumnDef="testName">
+      <th mat-header-cell *matHeaderCellDef>試卷名稱</th>
+      <td mat-cell *matCellDef="let element">{{ element.testName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="lastTestDate">
+      <th mat-header-cell *matHeaderCellDef>測驗完成時間</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastTestDate }}</td>
+    </ng-container>
+    <ng-container matColumnDef="testQty">
+      <th mat-header-cell *matHeaderCellDef>受測次數</th>
+      <td mat-cell *matCellDef="let element">{{ element.testQty }}</td>
+    </ng-container>
+    <ng-container matColumnDef="operating">
+      <th
+        [appStyleWidth]="'350px'"
+        style="text-align: center"
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        測驗結果
+      </th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <button (click)="downloadFile(i)" [disabled]="element.testsUpload == null" type="button" mat-raised-button color="primary">
+          檔案下載
+        </button>
+        <button (click)="downloadPDF(i)" [disabled]="element.testsPdf == null" type="button" mat-raised-button color="primary">PDF</button>
+        <button (click)="exportExcel(i)" [disabled]="element.testsExcel == null" type="button" mat-raised-button color="primary">
+          匯出Excel
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="vm.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: vm.displayedColumns"></tr>
+  </table>
+  <!-- <mat-paginator
+    #paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator> -->
+</div>
+
+
+<div class="btn_close row justify-content-center ">
+  <div class=" text-center">
+    <button
+      mat-flat-button
+      routerLink="/main/participant/test-result"
+      color="primary"
+      class="btb-cancel"
+    >
+      關閉
+    </button>
+  </div>
+</div>

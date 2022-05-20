@@ -1,0 +1,12 @@
+<div class="wrapper main-bg">
+    <main class="content d-flex justify-content-center"
+    [class.login]="isLogin" [class.inner-bg]="!isLogin">
+        <router-outlet></router-outlet>
+    </main>
+    <app-footer></app-footer>
+</div>
+<ngx-spinner
+type="ball-clip-rotate"
+bdColor="rgba(109, 106, 106, 0.4)"
+size="medium"
+color="#2196f3"></ngx-spinner>
